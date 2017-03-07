@@ -6,7 +6,10 @@
 TabEdition::TabEdition(QWidget* parent) : QWidget(parent)
 {
     this->creerTag = new QPushButton("Créer tag",this);
+    connect(this->creerTag, SIGNAL(clicked()), this, SLOT(creationTag()));
+
     this->AssocierTag = new QPushButton("Associer",this);
+    connect(this->AssocierTag, SIGNAL(clicked()), this, SLOT(association()));
 
     initialisationButtons();
 
@@ -49,11 +52,8 @@ void TabEdition::initialisationButtons(){
 
     }
 
-    connect(this->creerTag, SIGNAL(clicked()), this, SLOT(creationTag()));
     this->creerTag->setGeometry(QRect(QPoint(((i)%3)*110, ((i)/3)*55),
                                                           QSize(100, 50)));
-
-    connect(this->AssocierTag, SIGNAL(clicked()), this, SLOT(association()));
     this->AssocierTag->setGeometry(QRect(QPoint(((i)%3)+1*110, (((i)/3)+1)*55),
                                                           QSize(100, 50)));
 }
