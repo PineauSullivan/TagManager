@@ -5,6 +5,8 @@
 #include <QTableWidget>
 #include <QHBoxLayout>
 #include <QMessageBox>
+#include <QInputDialog>
+#include <string>
 
 class TabEdition : public QWidget
 {
@@ -13,12 +15,15 @@ class TabEdition : public QWidget
 private :
         QPushButton* creerTag;
         QPushButton* AssocierTag;
-
+        QHash<int, QPushButton*> buttonsList;
 public :
         TabEdition(QWidget* parent = 0 );
+        void initialisationButtons();
         ~TabEdition();
 
 private slots:
-        void buttonClicked();
+        void creationTag();
+        void tagClicked();
+        void association();
 };
 #endif // TABEDITION_H

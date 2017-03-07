@@ -2,6 +2,7 @@
 #include <QPushButton>
 #include "TabEdition.h"
 #include "TabRecherche.h"
+#include <QSignalMapper>
 
 int main(int argc, char *argv[])
 {
