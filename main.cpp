@@ -1,22 +1,27 @@
 #include <QApplication>
 #include <QPushButton>
+#include <QSignalMapper>
+#include <QTextCodec>
 #include "TabEdition.h"
 #include "TabRecherche.h"
-#include <QSignalMapper>
+#include "Tags.cpp"
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
 
+    QApplication a(argc, argv);
+    Tags* tags = new Tags();
     //Création de l'objet de gestion des onglets
     QTabWidget MesOnglets;
 
     //Création des différents widgets qui vont composer les onglets
-    TabRecherche MyTabRecherche;
-    TabEdition MyTabEdition;
+    TabRecherche MyTabRecherche(tags);
+    TabEdition MyTabEdition(tags);
 
     //Agencement des différents widgets en onglets
     MesOnglets.addTab(&MyTabRecherche,"Mode Recherche");//Creation du premier onglet
+
     MesOnglets.addTab(&MyTabEdition,"Mode Edition");//Creation du deuxième onglet
 
     //Affichage de l'application

@@ -1,15 +1,25 @@
-
 #include "TabEdition.h"
 
 
 
-TabEdition::TabEdition(QWidget* parent) : QWidget(parent)
+TabEdition::TabEdition(Tags *tags,QWidget* parent) : QWidget(parent)
 {
+    this->model = new QFileSystemModel(this);
+    this->model->setRootPath("E:\\");
+    this->view = new QTreeView(this);
+    this->view->setModel(this->model);
+    this->view->show();
+    this->view->setVisible(true);
+
+    this->tags=tags;
+    for(int i = 0; i<tags->getListTags().size();++i){
+        this->buttonsList.insert(this->buttonsList.size(), new QPushButton(tags->getListTags().value(i),this));
+    }
     this->creerTag = new QPushButton("Créer tag",this);
     connect(this->creerTag, SIGNAL(clicked()), this, SLOT(creationTag()));
 
-    this->AssocierTag = new QPushButton("Associer",this);
-    connect(this->AssocierTag, SIGNAL(clicked()), this, SLOT(association()));
+    this->associerTag = new QPushButton("Associer",this);
+    connect(this->associerTag, SIGNAL(clicked()), this, SLOT(association()));
 
     initialisationButtons();
 
@@ -23,6 +33,7 @@ void TabEdition::creationTag()
     if (ok && !tag.isEmpty())
     {
         this->buttonsList.insert(this->buttonsList.size(), new QPushButton(tag,this));
+        this->tags->add_tag(tag);
         initialisationButtons();
         QMessageBox::information(this, "Tag", "Le " + tag + " a bien été ajouté.");
     }
@@ -44,17 +55,20 @@ void TabEdition::association()
 
 void TabEdition::initialisationButtons(){
     int i;
+    this->view->setGeometry(QRect(QPoint(0, 0),
+                              QSize(900, 600)));
+
     for(i = 0; i < this->buttonsList.size(); ++i) {
-        this->buttonsList.value(i)->setGeometry(QRect(QPoint((i%3)*110, (i/3)*55),
+        this->buttonsList.value(i)->setGeometry(QRect(QPoint((i%3)*110+905, (i/3)*55),
                                                               QSize(100, 50)));
         connect(this->buttonsList.value(i), SIGNAL(clicked()), this, SLOT(tagClicked()));
         this->buttonsList.value(i)->setVisible(true);
 
     }
 
-    this->creerTag->setGeometry(QRect(QPoint(((i)%3)*110, ((i)/3)*55),
+    this->creerTag->setGeometry(QRect(QPoint(((i)%3)*110+905, ((i)/3)*55),
                                                           QSize(100, 50)));
-    this->AssocierTag->setGeometry(QRect(QPoint(((i)%3)+1*110, (((i)/3)+1)*55),
+    this->associerTag->setGeometry(QRect(QPoint(((i)%3)+1*110+905, (((i)/3)+1)*55),
                                                           QSize(100, 50)));
 }
 
