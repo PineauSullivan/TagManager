@@ -18,3 +18,5 @@ HEADERS += \
     QWidgetO.h
 
 FORMS +=
+
+DISTFILES +=

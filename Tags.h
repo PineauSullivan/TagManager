@@ -4,6 +4,8 @@
 #include <QString>
 #include <Tag.h>
 #include <QWidgetO.h>
+#include <QFile>
+#include <QTextStream>
 
 class Tags
 {
@@ -20,6 +22,7 @@ public :
     QWidgetO* getTabEdition();
     QList<Tag*> getListTags();
     Tag* getTag(QString tag);
+    void initialiserTagsFiles();
     ~Tags();
 
 //    QHash<QString, QString> getHashTags();

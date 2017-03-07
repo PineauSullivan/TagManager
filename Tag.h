@@ -3,6 +3,8 @@
 #include <string>
 #include <QString>
 #include <QList>
+#include <QFile>
+#include <QTextStream>
 
 class Tag
 {
@@ -16,6 +18,7 @@ public :
     QString getName();
     void AddWay(QString way);
     bool is(QString name);
+    void initialiserTagFiles();
     ~Tag();
 };
 
