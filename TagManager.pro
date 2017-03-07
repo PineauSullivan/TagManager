@@ -11,3 +11,5 @@ OTHER_FILES += \
 HEADERS += \
     TabEdition.h \
     TabRecherche.h
+
+FORMS +=

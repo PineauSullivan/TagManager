@@ -20,7 +20,8 @@ int main(int argc, char *argv[])
     MesOnglets.addTab(&MyTabEdition,"Mode Edition");//Creation du deuxième onglet
 
     //Affichage de l'application
-    MesOnglets.show();
+    MesOnglets.showMaximized();
+
 
     return a.exec();
 }
