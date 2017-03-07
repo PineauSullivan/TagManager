@@ -2,15 +2,27 @@
 #define TAGS
 #include <string>
 #include <QString>
+#include <Tag.h>
+#include <QWidgetO.h>
 
 class Tags
 {
 private :
-    QHash<int, QString> ListTags;
+    QList<Tag*> ListTags;
+    QWidgetO* TabRecherche;
+    QWidgetO* TabEdition;
+//    QHash<QString, QString> HashTags;
 public :
     Tags();
+    void setQWidgetRecherche(QWidgetO* TabRecherche);
+    void setQWidgetEdition(QWidgetO* TabEdition);
+    QWidgetO* getTabRecherche();
+    QWidgetO* getTabEdition();
+    QList<Tag*> getListTags();
+    Tag* getTag(QString tag);
     ~Tags();
-    QHash<int, QString> getListTags();
+
+//    QHash<QString, QString> getHashTags();
     void add_tag(QString name);
 };
 #endif // TAGS

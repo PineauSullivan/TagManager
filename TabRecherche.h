@@ -6,21 +6,32 @@
 #include <QHBoxLayout>
 #include <QMessageBox>
 #include <Tags.h>
+#include <QWidgetO.h>
+#include <QTreeView>
+#include <QFileSystemModel>
+#include <QLabel>
 
-class TabRecherche : public QWidget
+class TabRecherche : public QWidgetO
 {
     Q_OBJECT
 
 private :
     Tags* tags;
-    QHash<int, QPushButton*> buttonsList;
+    QList<QPushButton*> buttonsList;
     QPushButton* rechercher;
+    QList<Tag*> tagsSelected;
+    QTreeView* view;
+    QFileSystemModel* model;
+    QLabel* resultLabelRecherche;
 
 public :
-        TabRecherche(Tags *tags, QWidget* parent = 0);
-        void initialisationButtons();
-        ~TabRecherche();
-private slots:
+    TabRecherche(Tags *tags, QWidget* parent = 0);
+    void initialisationButtons();
+    ~TabRecherche();
 
+private slots:
+    void tagClicked();
+    void aucunTag();
+    void recherche();
 };
 #endif // TABRECHERCHE_H
