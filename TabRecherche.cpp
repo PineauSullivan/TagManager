@@ -9,15 +9,9 @@ TabRecherche::TabRecherche(Tags *tags, QWidget* parent) : QWidgetO(parent)
 
     this->tagsSelected.clear();
 
-    this->model = new QFileSystemModel(this);
-
-    this->view = new QTreeView(this);
+    this->view = new QTableView(this);
     this->view->show();
     this->view->setVisible(true);
-
-    this->resultLabelRecherche=new QLabel(this);
-    this->resultLabelRecherche->setText("");
-    this->resultLabelRecherche->show();
 
 
     this->rechercher = new QPushButton("Rechercher",this);
@@ -27,11 +21,9 @@ TabRecherche::TabRecherche(Tags *tags, QWidget* parent) : QWidgetO(parent)
 
 void TabRecherche::initialisationButtons(){
     this->tagsSelected.clear();
-    this->resultLabelRecherche->setGeometry(QRect(QPoint(0, 0),
-                                    QSize(this->width()*2, this->height())));
 
-    this->view->setGeometry(QRect(QPoint(0, 500),
-                              QSize(this->width()*2,this->height()-300)));
+    this->view->setGeometry(QRect(QPoint(0, 200),
+                              QSize(this->width()*2,this->height())));
 
     foreach (QPushButton* button, this->buttonsList) {
         button->setVisible(false);
@@ -85,7 +77,6 @@ void TabRecherche::tagClicked(){
         this->tagsSelected.append(this->tags->getTag(button->text()));
 //        QMessageBox::information(this,"Tag sélectionné", "Tag sélectionné "+button->text());
     }
-    this->resultLabelRecherche->setText("");
 }
 
 void TabRecherche::aucunTag(){
@@ -110,16 +101,26 @@ void TabRecherche::recherche(){
                 }
             }
         }
-        QString result ="résultat : ";
-        int nb_way=1;
-        foreach(QString way, resultList){
-            if(nb_way==resultList.size()){
-                result = result + way + ".";
-            }else{
-                result = result + way + ", ";
+
+        if(!resultList.empty()){
+            this->model = new QStandardItemModel(this);
+            this->model->setColumnCount(1);
+            this->model->setRowCount(resultList.size());
+
+
+            int nb_way=1;
+            foreach(QString way, resultList){
+                this->model->setData(this->model->index(nb_way-1, 0), way);
+                nb_way++;
             }
+            this->view->setModel(this->model);
+            this->view->show();
+            this->view->setColumnWidth(0,this->width()*2);
+            this->view->setVisible(true);
+
+        }else{
+            this->view->setModel(NULL);
         }
-        this->resultLabelRecherche->setText(result);
     }else{
         QMessageBox::critical(this,"Aucun Tag sélectionné","Pour effectuer une recherche vous devez sélectionner un ou plusieurs tags.");
     }

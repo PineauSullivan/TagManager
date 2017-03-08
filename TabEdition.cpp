@@ -6,8 +6,13 @@ TabEdition::TabEdition(Tags *tags,QWidget* parent) : QWidgetO(parent)
 {
     this->model = new QFileSystemModel(this);
     this->model->setRootPath("E:\\");
+
     this->view = new QTreeView(this);
     this->view->setModel(this->model);
+    this->view->setColumnWidth(0,700);
+    this->view->setColumnWidth(2,200);
+    this->view->setColumnHidden(1,true);
+    this->view->setColumnHidden(3,true);
     this->view->show();
     this->view->setVisible(true);
     connect(this->view,SIGNAL(doubleClicked(QModelIndex)),this, SLOT(selected()));

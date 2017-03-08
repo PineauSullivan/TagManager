@@ -10,6 +10,7 @@
 #include <QTreeView>
 #include <QFileSystemModel>
 #include <QLabel>
+#include <QStandardItemModel>
 
 class TabRecherche : public QWidgetO
 {
@@ -20,9 +21,8 @@ private :
     QList<QPushButton*> buttonsList;
     QPushButton* rechercher;
     QList<Tag*> tagsSelected;
-    QTreeView* view;
-    QFileSystemModel* model;
-    QLabel* resultLabelRecherche;
+    QTableView* view;
+    QStandardItemModel* model;
 
 public :
     TabRecherche(Tags *tags, QWidget* parent = 0);

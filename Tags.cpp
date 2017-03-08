@@ -5,10 +5,6 @@
 
 Tags::Tags()
 {
-//    this->ListTags.append(new Tag("Rock"));
-//    this->ListTags.append(new Tag("Classique"));
-//    this->ListTags.append(new Tag("RNB"));
-//    this->ListTags.append(new Tag("RAP"));
     initialiserTagsFiles();
 }
 
