@@ -37,6 +37,7 @@ private :
 public :
         TabEdition(Tags *tags ,QWidget* parent = 0);
         void initialisationButtons();
+        void initialisationButtonsList();
         void clearSelected();
         ~TabEdition();
 

@@ -37,19 +37,21 @@ Tag* Tags::getTag(QString tagName){
     return result;
 }
 
-void Tags::add_tag(QString name){
+void Tags::add_tag(QString name, bool write){
     bool ok = true;
     foreach(Tag* tag, this->ListTags){
-        if(tag->getName()==name){
+        if(tag->getName()==name||tag->getName()==name+"'\n"){
             ok = false;
         }
     }
     if(ok){
-        QFile file("Config.txt");
-        if (file.open(QIODevice::Append | QIODevice::Text))
-        {
-            QTextStream out(&file);
-            out << name << '\n';
+        if(write){
+            QFile file("Config.txt");
+            if (file.open(QIODevice::Append | QIODevice::Text))
+            {
+                QTextStream out(&file);
+                out << name << '\n';
+            }
         }
         this->ListTags.append(new Tag(name));
     }
@@ -64,7 +66,7 @@ void Tags::initialiserTagsFiles(){
        {
           QString line = in.readLine();
           if(!line.isEmpty()){
-            add_tag(line);
+              add_tag(line, false);
           }
        }
        inputFile.close();

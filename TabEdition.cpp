@@ -47,11 +47,18 @@ void TabEdition::creationTag()
     bool ok = false;
     QString tag = QInputDialog::getText(this, "Creation Tag", "Quel est le tag que vous voulez ajouter ?", QLineEdit::Normal, QString(), &ok);
 
-    if (ok && !tag.isEmpty())
+    bool contain = false;
+    foreach(Tag* ta, this->tags->getListTags()){
+        if(ta->getName()==tag){
+            contain = true;
+        }
+    }
+
+    if (ok && !tag.isEmpty() && !contain)
     {
         this->buttonsList.append(new QPushButton(tag,this));
-        this->tags->add_tag(tag);
-        initialisationButtons();
+        this->tags->add_tag(tag, true);
+        initialisationButtonsList();
         QMessageBox::information(this, "Tag", "Le " + tag + " a bien été ajouté.");
         this->tags->getTabRecherche()->initialisationButtons();
     }
@@ -91,7 +98,7 @@ void TabEdition::association()
 
         foreach(Tag* tag, this->tagsSelected){
             foreach(QString way, this->waysSelected){
-                tag->AddWay(way);
+                tag->AddWay(way, true);
             }
         }
 
@@ -169,6 +176,24 @@ void TabEdition::initialisationButtons(){
     this->associerTag->setGeometry(QRect(QPoint(((i)%3)+1*110+905, (((i)/3)+1)*55),
                                                           QSize(100, 50)));
     clearSelected();
+}
+
+void TabEdition::initialisationButtonsList(){
+    int i=0;
+
+    foreach(QPushButton* button, this->buttonsList){
+        button->disconnect();
+        button->setGeometry(QRect(QPoint((i%3)*110+905, (i/3)*55),
+                                                              QSize(100, 50)));
+        connect(button, SIGNAL(clicked()), this, SLOT(tagClicked()));
+        button->setVisible(true);
+        ++i;
+    }
+
+    this->creerTag->setGeometry(QRect(QPoint(((i)%3)*110+905, ((i)/3)*55),
+                                                          QSize(100, 50)));
+    this->associerTag->setGeometry(QRect(QPoint(((i)%3)+1*110+905, (((i)/3)+1)*55),
+                                                          QSize(100, 50)));
 }
 
 void TabEdition::clearSelected(){

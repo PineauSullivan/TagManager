@@ -16,7 +16,7 @@ public :
     Tag(QString);
     QList<QString> getListWays();
     QString getName();
-    void AddWay(QString way);
+    void AddWay(QString way, bool write);
     bool is(QString name);
     void initialiserTagFiles();
     ~Tag();

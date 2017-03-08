@@ -10,10 +10,10 @@ QList<QString> Tag::getListWays(){
     return this->ListWays;
 }
 
-void Tag::AddWay(QString way){
-    if(!this->ListWays.contains(way)){
+void Tag::AddWay(QString way, bool write){
+    if(!this->ListWays.contains(way) && !this->ListWays.contains(way+'\n')){
         QFile file("ConfigTag"+this->Name+".txt");
-        if (file.open(QIODevice::Append | QIODevice::Text))
+        if (file.open(QIODevice::Append | QIODevice::Text) && write)
         {
             QTextStream out(&file);
             out << way << '\n';
@@ -39,7 +39,7 @@ void Tag::initialiserTagFiles(){
        {
           QString line = in.readLine();
           if(!line.isEmpty()){
-            AddWay(line);
+            AddWay(line, false);
           }
        }
        inputFile.close();

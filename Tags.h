@@ -26,7 +26,7 @@ public :
     ~Tags();
 
 //    QHash<QString, QString> getHashTags();
-    void add_tag(QString name);
+    void add_tag(QString name, bool write);
 };
 #endif // TAGS
 

@@ -13,6 +13,8 @@ TabRecherche::TabRecherche(Tags *tags, QWidget* parent) : QWidgetO(parent)
     this->view->show();
     this->view->setVisible(true);
 
+    this->view->setGeometry(QRect(QPoint(0, 200),
+                              QSize(this->width()*2,this->height())));
 
     this->rechercher = new QPushButton("Rechercher",this);
 
@@ -21,9 +23,6 @@ TabRecherche::TabRecherche(Tags *tags, QWidget* parent) : QWidgetO(parent)
 
 void TabRecherche::initialisationButtons(){
     this->tagsSelected.clear();
-
-    this->view->setGeometry(QRect(QPoint(0, 200),
-                              QSize(this->width()*2,this->height())));
 
     foreach (QPushButton* button, this->buttonsList) {
         button->setVisible(false);
