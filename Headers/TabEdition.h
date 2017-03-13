@@ -21,6 +21,7 @@
 #include <Headers/QPushButtonPlus.h>
 #include <QMenuBar>
 #include <QDirModel>
+#include <QMouseEvent>
 
 class TabEdition : public QWidgetO
 {

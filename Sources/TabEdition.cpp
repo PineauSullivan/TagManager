@@ -143,31 +143,39 @@ void TabEdition::association()
 }
 
 QString TabEdition::toStringTag(){
-    QString result = "Tag(s) sélectionné(s) : ";
-    int i =1;
-    foreach(Tag *tag, this->tagsSelected){
-        if(this->tagsSelected.size()==i){
-            result = result + tag->getName()+".";
-        }else{
-            result = result + tag->getName()+", ";
-        }
-        ++i;
-    }
+//    QString result = "Tag(s) sélectionné(s) : ";
+//    int i =1;
+//    foreach(Tag *tag, this->tagsSelected){
+//        if(this->tagsSelected.size()==i){
+//            result = result + tag->getName()+".";
+//        }else{
+//            result = result + tag->getName()+", ";
+//        }
+//        ++i;
+//    }
+
+    QString result = "Nombre de tag(s) sélectionné(s) : "+QString::number(this->tagsSelected.size())+".";
+
+
+
     return result;
 }
 
 QString TabEdition::toStringWay(){
-    QString result = "Fichier(s) et/ou dossier(s) sélectionné(s) : ";
-    int i = 1;
-    foreach(QString way, this->waysSelected){
-        if(this->waysSelected.size()==i){
-            result = result + way+".";
-        }else{
-            result = result + way+", ";
+//    QString result = "Fichier(s) et/ou dossier(s) sélectionné(s) : ";
+//    int i = 1;
+//    foreach(QString way, this->waysSelected){
+//        if(this->waysSelected.size()==i){
+//            result = result + way+".";
+//        }else{
+//            result = result + way+", ";
 
-        }
-        ++i;
-    }
+//        }
+//        ++i;
+//    }
+
+
+    QString result = "Nombre de fichier(s)/dossier(s) sélectionné(s) : "+QString::number(this->waysSelected.size())+".";
     return result;
 }
 
