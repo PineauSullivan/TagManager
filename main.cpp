@@ -5,6 +5,7 @@
 #include "TabEdition.h"
 #include "TabRecherche.h"
 #include "Tags.cpp"
+#include <QMainWindow>
 
 int main(int argc, char *argv[])
 {
@@ -15,6 +16,7 @@ int main(int argc, char *argv[])
     //Création de l'objet de gestion des onglets
     QTabWidget MesOnglets;
 
+
     //Création des différents widgets qui vont composer les onglets
     TabRecherche MyTabRecherche(tags);
     TabEdition MyTabEdition(tags);
@@ -22,14 +24,26 @@ int main(int argc, char *argv[])
     tags->setQWidgetEdition(&MyTabEdition);
     tags->setQWidgetRecherche(&MyTabRecherche);
 
+
     //Agencement des différents widgets en onglets
     MesOnglets.addTab(&MyTabRecherche,"Mode Recherche");//Creation du premier onglet
 
     MesOnglets.addTab(&MyTabEdition,"Mode Edition");//Creation du deuxième onglet
 
+    QMenuBar* bar = new QMenuBar(&MesOnglets);
+
+    QMenu* menu1 = new QMenu("Fichier");
+    QAction* act = new QAction(QObject::tr("E&xit"),&MesOnglets);
+    act->setShortcut(QObject::tr("Ctrl+Q"));
+    act->setStatusTip(QObject::tr("Exit the application"));
+    menu1->addAction(act);
+    QObject::connect(act, SIGNAL(triggered()), &MesOnglets, SLOT(close()));
+
+    bar->addMenu(menu1);
+
+
     //Affichage de l'application
     MesOnglets.showMaximized();
-
 
     return a.exec();
 }

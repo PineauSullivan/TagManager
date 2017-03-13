@@ -8,6 +8,7 @@ class QWidgetO : public QWidget
     public :
         QWidgetO(QWidget* parent = 0): QWidget(parent){};
         virtual void initialisationButtons()=0;
+        virtual void sup(QString name) = 0;
 };
 #endif // QWIDGETO
 

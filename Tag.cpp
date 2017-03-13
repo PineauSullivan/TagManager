@@ -46,6 +46,29 @@ void Tag::initialiserTagFiles(){
     }
 }
 
+bool Tag::tagPossedant(QString way){
+    foreach(QString wayb, this->ListWays){
+        if(wayb==way)
+            return true;
+    }
+    return false;
+}
+
+void Tag::supWay(QString way){
+    this->ListWays.removeAll(way);
+    QFile file("ConfigTag"+this->getName()+".txt");
+    file.remove();
+    QList<QString> listTmp;
+    foreach(QString tmp, this->ListWays){
+        listTmp.push_back(tmp);
+    }
+    ListWays.clear();
+    foreach(QString way, listTmp){
+        AddWay(way, true);
+    }
+}
+
+
 Tag::~Tag()
 {
 }

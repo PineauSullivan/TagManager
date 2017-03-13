@@ -9,14 +9,30 @@ TabRecherche::TabRecherche(Tags *tags, QWidget* parent) : QWidgetO(parent)
 
     this->tagsSelected.clear();
 
-    this->view = new QTableView(this);
+    this->view = new MyView(this);
     this->view->show();
     this->view->setVisible(true);
 
     this->view->setGeometry(QRect(QPoint(0, 200),
                               QSize(this->width()*2,this->height())));
+    connect(this->view,SIGNAL(doubleClicked()), this, SLOT(lancer()));
+    connect(this->view,SIGNAL(rightClicked()), this, SLOT(menuWayClicked()));
 
-    this->rechercher = new QPushButton("Rechercher",this);
+    this->menuWay = new QMenu(this);
+    QAction *menuAction;
+
+    menuAction = this->menuWay->addAction("lancer");
+    connect(menuAction, SIGNAL(triggered()), this, SLOT(lancer()));
+
+    menuAction = this->menuWay->addAction("supprimer");
+    connect(menuAction, SIGNAL(triggered()), this, SLOT(supWay()));
+
+    this->menuWay->setVisible(false);
+
+    this->menuTag = new QMenu(this);
+    this->menuTag->addAction("Supprimer");
+    connect(this->menuTag, SIGNAL(triggered(QAction*)), this, SLOT(supTag()));
+    this->menuTag->setVisible(false);
 
     initialisationButtons();
 }
@@ -33,48 +49,42 @@ void TabRecherche::initialisationButtons(){
     foreach(Tag* tag, this->tags->getListTags()){
         if(!tag->getListWays().empty()){
             nbtag++;
-            QPushButton* button = new QPushButton(tag->getName(),this);
+            QPushButtonPlus* button = new QPushButtonPlus(tag->getName(),this);
             this->buttonsList.append(button);
-            connect(button, SIGNAL(clicked()), this, SLOT(tagClicked()));
+            Style::setStyle(button, 1);
+
+            connect(button, SIGNAL(leftClicked()), this, SLOT(tagClicked()));
+            connect(button, SIGNAL(rightClicked()), this, SLOT(menuTagClicked()));
             button->setVisible(true);
         }
     }
-    if(nbtag==0){
-        QPushButton* button = new QPushButton("Aucun Tag",this);
-        button->setFlat(true);
-        this->buttonsList.append(button);
-        connect(button, SIGNAL(clicked()), this, SLOT(aucunTag()));
-        button->setVisible(true);
-        this->rechercher->setFlat(true);
-    }else{
-        this->rechercher->setFlat(false);
-    }
-
     int i = 0;
     foreach(QPushButton* button, this->buttonsList) {
-        button->setGeometry(QRect(QPoint((i%10)*110, (i/10)*55),
+        button->setGeometry(QRect(QPoint((i%10)*110, (i/10)*55+5),
                                                               QSize(100, 50)));
         button->setVisible(true);
         ++i;
     }
-    this->rechercher->setGeometry(QRect(QPoint(((i)%10)+1*110, (((i)/10)+1)*55),
-                                                          QSize(100, 50)));
-    this->rechercher->setVisible(true);
-    this->rechercher->disconnect();
-    connect(this->rechercher, SIGNAL(clicked()), this, SLOT(recherche()));
+
 
 }
 
 void TabRecherche::tagClicked(){
     QPushButton *button = (QPushButton *)sender();
     if(button->isFlat()){
+        Style::setStyle(button, 1);
         button->setFlat(false);
         this->tagsSelected.removeAll(this->tags->getTag(button->text()));
-//        QMessageBox::information(this,"Tag désélectionné", "Tag désélectionné "+button->text());
+        if(this->tagsSelected.size()!=0){
+            recherche();
+        }else{
+            this->view->setModel(NULL);
+        }
     }else{
+        Style::setStyle(button, 4);
         button->setFlat(true);
         this->tagsSelected.append(this->tags->getTag(button->text()));
-//        QMessageBox::information(this,"Tag sélectionné", "Tag sélectionné "+button->text());
+        recherche();
     }
 }
 
@@ -123,6 +133,117 @@ void TabRecherche::recherche(){
     }else{
         QMessageBox::critical(this,"Aucun Tag sélectionné","Pour effectuer une recherche vous devez sélectionner un ou plusieurs tags.");
     }
+}
+
+void TabRecherche::supTag(){
+    QString nb = QString::number(this->tagEnSuppression->getListWays().size());
+    int reponse = QMessageBox::question(this, "Suppression de Tag", "Etês vous sur de vouloir supprimer le Tag : "+this->tagEnSuppression->getName()+" qui possède "+nb+" fichier(s) associé(s) ?", QMessageBox ::Yes | QMessageBox::No);
+
+    if (reponse == QMessageBox::Yes)
+    {
+        QString nomtag= this->tagEnSuppression->getName();
+        this->tags->supprimerTag(this->tagEnSuppression);
+        this->tags->getTabEdition()->sup(nomtag);
+        this->initialisationButtons();
+        this->menuTag->setVisible(false);
+        QMessageBox::information(this, "Suppression de Tag", "Tag :"+nomtag+" supprimé");
+    }
+    this->menuTag->setVisible(false);
+
+}
+
+
+void TabRecherche::menuTagClicked(){
+    this->menuWay->setVisible(false);
+
+    QPushButton *button = (QPushButton *)sender();
+
+
+    if(this->menuTag->isVisible()){
+        this->tagEnSuppression = NULL;
+        this->menuTag->setVisible(false);
+    }else{
+        this->tagEnSuppression = this->tags->getTag(button->text());
+        this->menuTag->setGeometry(QRect(QPoint(button->pos().x()+90,button->pos().y()+90),
+                               QSize(112, 23)));
+        this->menuTag->raise();
+        this->menuTag->setVisible(true);
+    }
+}
+
+void TabRecherche::menuWayClicked(){
+    this->menuTag->setVisible(false);
+    QModelIndex index = this->view->currentIndex();
+
+    QString chemin = index.data().toString();
+
+    if(this->menuWay->isVisible()){
+        this->menuWay->setVisible(false);
+    }else{
+        this->menuWay->setGeometry(QRect(QPoint(this->view->pos().x()+90,this->view->pos().y()+90),
+                                         QSize(112, 46)));
+        this->menuWay->raise();
+        this->menuWay->setVisible(true);
+    }
+
+}
+
+void TabRecherche::lancer(){
+    this->menuWay->setVisible(false);
+    QModelIndex index = this->view->currentIndex();
+    QString chemin = index.data().toString();
+
+    if(!QDesktopServices::openUrl(QUrl::fromLocalFile(chemin)))
+    {
+        QMessageBox::critical(this,"Erreur d'ouverture", "Il est impossible d'ouvrir le fichier/dossier : "+chemin+".");
+    }
+}
+void TabRecherche::sup(QString name){
+    if(name == ""){
+    }else{
+
+    }
+}
+
+void TabRecherche::supWay(){
+
+    this->menuWay->setVisible(false);
+    QModelIndex index = this->view->currentIndex();
+    QString chemin = index.data().toString();
+
+
+    QMessageBox msgBox;
+    msgBox.setText("Suppression d'associations.");
+    msgBox.setInformativeText("Veuillez selectionner les différents tags que vous souhaitez désassocier de '"+chemin+"' : ");
+
+    QList<QCheckBox*> list_check;
+    foreach(Tag* tag, this->tags->getListTags()){
+        if(tag->tagPossedant(chemin)){
+            QCheckBox* dontPrompt = new QCheckBox(tag->getName(), &msgBox);
+            dontPrompt->blockSignals(true);
+            msgBox.addButton(dontPrompt, QMessageBox::ActionRole);
+            list_check.push_back(dontPrompt);
+        }
+    }
+
+
+    msgBox.addButton(QMessageBox::Yes);
+    msgBox.addButton(QMessageBox::Cancel);
+    int res = msgBox.exec();
+    int nb=0;
+    foreach(QCheckBox* box, list_check){
+        if ( box->checkState() == Qt::Checked && res == QMessageBox::Yes)
+        {
+            this->tags->getTag(box->text())->supWay(chemin);
+            nb++;
+        }
+    }
+    if(nb>0)
+        QMessageBox::information(this,"Information", "Vos modifications ont bien été prise.");
+    else
+        QMessageBox::information(this,"Information", "Aucune désassociation a été effectuée.");
+
+    this->initialisationButtons();
 }
 
 TabRecherche::~TabRecherche()

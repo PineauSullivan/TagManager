@@ -22,7 +22,9 @@ public :
     QWidgetO* getTabEdition();
     QList<Tag*> getListTags();
     Tag* getTag(QString tag);
+    void supprimerTag(Tag* tag);
     void initialiserTagsFiles();
+//    QList<Tag*> tagsPossedant(QString way);
     ~Tags();
 
 //    QHash<QString, QString> getHashTags();

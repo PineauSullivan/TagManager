@@ -5,7 +5,10 @@ SOURCES += \
     TabEdition.cpp \
     TabRecherche.cpp \
     Tags.cpp \
-    Tag.cpp
+    Tag.cpp \
+    QPushButtonPlus.cpp \
+    MyView.cpp \
+    Style.cpp
 
 OTHER_FILES += \
     icon_edition.png
@@ -15,7 +18,10 @@ HEADERS += \
     TabRecherche.h \
     Tags.h \
     Tag.h \
-    QWidgetO.h
+    QWidgetO.h \
+    QPushButtonPlus.h \
+    Style.h \
+    MyView.h
 
 FORMS +=
 

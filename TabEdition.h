@@ -17,6 +17,9 @@
 #include <Tag.h>
 #include <QLabel>
 #include <QWidgetO.h>
+#include <Style.h>
+#include <QPushButtonPlus.h>
+#include <QMenuBar>
 
 class TabEdition : public QWidgetO
 {
@@ -26,19 +29,21 @@ private :
         Tags* tags;
         QPushButton* creerTag;
         QPushButton* associerTag;
-        QList<QPushButton*> buttonsList;
+        QList<QPushButtonPlus*> buttonsList;
         QTreeView* view;
         QFileSystemModel* model;
         QList<Tag*> tagsSelected;
         QList<QString> waysSelected;
         QLabel* resultLabelTag;
         QLabel* resultLabelWay;
-
+        Tag* tagEnSuppression;
+        QMenu* menuTag;
 public :
         TabEdition(Tags *tags ,QWidget* parent = 0);
         void initialisationButtons();
         void initialisationButtonsList();
         void clearSelected();
+        void sup(QString name);
         ~TabEdition();
 
 private slots:
@@ -49,5 +54,8 @@ private slots:
         QString toStringTag();
         QString toStringWay();
         void setLabels();
+        void menuTagClicked();
+        void supTag();
+
 };
 #endif // TABEDITION_H

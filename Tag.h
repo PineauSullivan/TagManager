@@ -19,6 +19,8 @@ public :
     void AddWay(QString way, bool write);
     bool is(QString name);
     void initialiserTagFiles();
+    bool tagPossedant(QString way);
+    void supWay(QString way);
     ~Tag();
 };
 
