@@ -40,14 +40,14 @@ int main(int argc, char *argv[])
 
     QMenu* menu2 = new QMenu("Aide");
     QAction* act1 = new QAction(QObject::tr("Recherche"),&MesOnglets);
-    act->setShortcut(QObject::tr("Ctrl+R"));
-    act->setStatusTip(QObject::tr("Aide mode recherche"));
+    act1->setShortcut(QObject::tr("Ctrl+R"));
+    act1->setStatusTip(QObject::tr("Aide mode recherche"));
     menu2->addAction(act1);
     QObject::connect(act1, SIGNAL(triggered()),  &MyTabRecherche, SLOT(messageAide()));
 
     QAction* act2 = new QAction(QObject::tr("Edition"),&MesOnglets);
-    act->setShortcut(QObject::tr("Ctrl+E"));
-    act->setStatusTip(QObject::tr("Aide mode recherche"));
+    act2->setShortcut(QObject::tr("Ctrl+E"));
+    act2->setStatusTip(QObject::tr("Aide mode recherche"));
     menu2->addAction(act2);
     QObject::connect(act2, SIGNAL(triggered()),  &MyTabEdition, SLOT(messageAide()));
 
