@@ -39,6 +39,7 @@ TabRecherche::TabRecherche(Tags *tags, QWidget* parent) : QWidgetO(parent)
 
 void TabRecherche::initialisationButtons(){
     this->tagsSelected.clear();
+    this->view->setModel(NULL);
 
     foreach (QPushButton* button, this->buttonsList) {
         button->setVisible(false);
@@ -57,6 +58,13 @@ void TabRecherche::initialisationButtons(){
             connect(button, SIGNAL(rightClicked()), this, SLOT(menuTagClicked()));
             button->setVisible(true);
         }
+    }
+    if(nbtag==0){
+        QPushButtonPlus* button = new QPushButtonPlus("Aucun Tag",this);
+        this->buttonsList.append(button);
+        Style::setStyle(button, 2);
+        connect(button, SIGNAL(leftClicked()), this, SLOT(aucunTag()));
+        button->setVisible(true);
     }
     int i = 0;
     foreach(QPushButton* button, this->buttonsList) {
@@ -146,7 +154,9 @@ void TabRecherche::supTag(){
         this->tags->getTabEdition()->sup(nomtag);
         this->initialisationButtons();
         this->menuTag->setVisible(false);
+        this->view->setModel(NULL);
         QMessageBox::information(this, "Suppression de Tag", "Tag :"+nomtag+" supprimé");
+
     }
     this->menuTag->setVisible(false);
 
@@ -238,11 +248,12 @@ void TabRecherche::supWay(){
             nb++;
         }
     }
-    if(nb>0)
+    if(nb>0){
+        this->view->setModel(NULL);
         QMessageBox::information(this,"Information", "Vos modifications ont bien été prise.");
-    else
+    }else{
         QMessageBox::information(this,"Information", "Aucune désassociation a été effectuée.");
-
+    }
     this->initialisationButtons();
 }
 
