@@ -1,5 +1,5 @@
 
-#include "Tags.h"
+#include "Headers/Tags.h"
 
 
 
@@ -28,7 +28,7 @@ QWidgetO* Tags::getTabEdition(){
 }
 
 Tag* Tags::getTag(QString tagName){
-    Tag* result;
+    Tag* result = NULL;
     foreach(Tag* tag, this->ListTags){
         if(tag->is(tagName)){
             result =  tag;
@@ -46,7 +46,7 @@ void Tags::add_tag(QString name, bool write){
     }
     if(ok){
         if(write){
-            QFile file("Config/Config.txt");
+            QFile file("Configs/Config.txt");
             if (file.open(QIODevice::Append | QIODevice::Text))
             {
                 QTextStream out(&file);
@@ -58,13 +58,13 @@ void Tags::add_tag(QString name, bool write){
 }
 
 void Tags::supprimerTag(Tag* tag){
-    QFile file("Config/ConfigTag"+tag->getName()+".txt");
+    QFile file("Configs/ConfigTag"+tag->getName()+".txt");
     file.remove();
-    QFile fileConfigBefore("Config/Config.txt");
+    QFile fileConfigBefore("Configs/Config.txt");
     fileConfigBefore.remove();
     this->ListTags.removeAll(tag);
     foreach(Tag* tag, this->ListTags){
-        QFile file("Config/Config.txt");
+        QFile file("Configs/Config.txt");
         if (file.open(QIODevice::Append | QIODevice::Text))
         {
             QTextStream out(&file);
@@ -76,7 +76,7 @@ void Tags::supprimerTag(Tag* tag){
 }
 
 void Tags::initialiserTagsFiles(){
-    QFile inputFile("Config/Config.txt");
+    QFile inputFile("Configs/Config.txt");
     if (inputFile.open(QIODevice::ReadOnly))
     {
        QTextStream in(&inputFile);
@@ -90,16 +90,6 @@ void Tags::initialiserTagsFiles(){
        inputFile.close();
     }
 }
-
-//QList<Tag*> Tags::tagsPossedant(QString way){
-//    QList<Tag*> list;
-//    foreach(Tag* tag, this->ListTags){
-//        if(tag->tagPossedant(way)){
-//            list.push_back(tag);
-//        }
-//    }
-//    return list;
-//}
 
 
 Tags::~Tags()

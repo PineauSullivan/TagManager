@@ -1,4 +1,4 @@
-#include "Style.h"
+#include "Headers/Style.h"
 
 void Style::setStyle(QPushButton* button, int version){
     switch(version){

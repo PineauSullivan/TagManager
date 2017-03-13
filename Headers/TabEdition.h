@@ -8,17 +8,17 @@
 #include <QInputDialog>
 #include <QTreeView>
 #include <string>
-#include <Tags.h>
+#include <Headers/Tags.h>
 #include <QFileDialog>
 #include <QFileSystemModel>
 #include <QListView>
 #include <QHeaderView>
 #include <QList>
-#include <Tag.h>
+#include <Headers/Tag.h>
 #include <QLabel>
-#include <QWidgetO.h>
-#include <Style.h>
-#include <QPushButtonPlus.h>
+#include <Headers/QWidgetO.h>
+#include <Headers/Style.h>
+#include <Headers/QPushButtonPlus.h>
 #include <QMenuBar>
 
 class TabEdition : public QWidgetO

@@ -1,4 +1,4 @@
-#include "MyView.h"
+#include "Headers/MyView.h"
 #include <QMouseEvent>
 
 MyView::MyView(QWidget *parent) :

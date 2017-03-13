@@ -2,8 +2,8 @@
 #define TAGS
 #include <string>
 #include <QString>
-#include <Tag.h>
-#include <QWidgetO.h>
+#include <Headers/Tag.h>
+#include <Headers/QWidgetO.h>
 #include <QFile>
 #include <QTextStream>
 #include <QCoreApplication>
@@ -14,7 +14,7 @@ private :
     QList<Tag*> ListTags;
     QWidgetO* TabRecherche;
     QWidgetO* TabEdition;
-//    QHash<QString, QString> HashTags;
+
 public :
     Tags();
     void setQWidgetRecherche(QWidgetO* TabRecherche);
@@ -25,11 +25,9 @@ public :
     Tag* getTag(QString tag);
     void supprimerTag(Tag* tag);
     void initialiserTagsFiles();
-//    QList<Tag*> tagsPossedant(QString way);
+    void add_tag(QString name, bool write);
     ~Tags();
 
-//    QHash<QString, QString> getHashTags();
-    void add_tag(QString name, bool write);
 };
 #endif // TAGS
 

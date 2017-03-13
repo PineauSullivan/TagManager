@@ -1,4 +1,4 @@
-#include "QPushButtonPlus.h"
+#include "Headers/QPushButtonPlus.h"
 #include <QMouseEvent>
 
 QPushButtonPlus::QPushButtonPlus(QString name, QWidget *parent) :

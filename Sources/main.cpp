@@ -2,9 +2,9 @@
 #include <QPushButton>
 #include <QSignalMapper>
 #include <QTextCodec>
-#include "TabEdition.h"
-#include "TabRecherche.h"
-#include "Tags.cpp"
+#include "Headers/TabEdition.h"
+#include "Headers/TabRecherche.h"
+#include "Sources/Tags.cpp"
 #include <QMainWindow>
 
 int main(int argc, char *argv[])

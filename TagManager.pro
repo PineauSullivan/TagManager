@@ -1,27 +1,24 @@
 QT += widgets
 
 SOURCES += \
-    main.cpp \
-    TabEdition.cpp \
-    TabRecherche.cpp \
-    Tags.cpp \
-    Tag.cpp \
-    QPushButtonPlus.cpp \
-    MyView.cpp \
-    Style.cpp
-
-OTHER_FILES += \
-    icon_edition.png
+    Sources/main.cpp \
+    Sources/TabEdition.cpp \
+    Sources/TabRecherche.cpp \
+    Sources/Tags.cpp \
+    Sources/Tag.cpp \
+    Sources/QPushButtonPlus.cpp \
+    Sources/MyView.cpp \
+    Sources/Style.cpp
 
 HEADERS += \
-    TabEdition.h \
-    TabRecherche.h \
-    Tags.h \
-    Tag.h \
-    QWidgetO.h \
-    QPushButtonPlus.h \
-    Style.h \
-    MyView.h
+    Headers/TabEdition.h \
+    Headers/TabRecherche.h \
+    Headers/Tags.h \
+    Headers/Tag.h \
+    Headers/QWidgetO.h \
+    Headers/QPushButtonPlus.h \
+    Headers/Style.h \
+    Headers/MyView.h
 
 FORMS +=
 
