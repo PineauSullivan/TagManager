@@ -12,7 +12,7 @@ QList<QString> Tag::getListWays(){
 
 void Tag::AddWay(QString way, bool write){
     if(!this->ListWays.contains(way) && !this->ListWays.contains(way+'\n')){
-        QFile file("ConfigTag"+this->Name+".txt");
+        QFile file("Config/ConfigTag"+this->Name+".txt");
         if (file.open(QIODevice::Append | QIODevice::Text) && write)
         {
             QTextStream out(&file);
@@ -31,7 +31,7 @@ QString Tag::getName(){
 }
 
 void Tag::initialiserTagFiles(){
-    QFile inputFile("ConfigTag"+this->Name+".txt");
+    QFile inputFile("Config/ConfigTag"+this->Name+".txt");
     if (inputFile.open(QIODevice::ReadOnly))
     {
        QTextStream in(&inputFile);
@@ -56,7 +56,7 @@ bool Tag::tagPossedant(QString way){
 
 void Tag::supWay(QString way){
     this->ListWays.removeAll(way);
-    QFile file("ConfigTag"+this->getName()+".txt");
+    QFile file("Config/ConfigTag"+this->getName()+".txt");
     file.remove();
     QList<QString> listTmp;
     foreach(QString tmp, this->ListWays){

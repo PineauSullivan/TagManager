@@ -34,6 +34,12 @@ TabRecherche::TabRecherche(Tags *tags, QWidget* parent) : QWidgetO(parent)
     connect(this->menuTag, SIGNAL(triggered(QAction*)), this, SLOT(supTag()));
     this->menuTag->setVisible(false);
 
+    this->modeRecherche = new QCheckBox("Mode Recherche ET logique",this);
+    this->modeRecherche->setGeometry(QRect(QPoint((9)*110, 3*55+5),
+                                                         QSize(220, 25)));
+
+    connect(this->modeRecherche,SIGNAL(stateChanged(int)), this, SLOT(checkboxChanged()));
+    this->modeRecherche->setVisible(true);
     initialisationButtons();
 }
 
@@ -104,17 +110,27 @@ void TabRecherche::recherche(){
     QList<QString> resultList;
     if(!this->tagsSelected.isEmpty()){
         QList<QString> firstWays = this->tagsSelected.first()->getListWays();
-        bool ok = true;
-        foreach(QString way, firstWays){
-            ok = true;
-            foreach(Tag* tag, this->tagsSelected){
-                if(!tag->getListWays().contains(way)){
-                    ok = false;
+        if(this->modeRecherche->isChecked()){
+            bool ok = true;
+            foreach(QString way, firstWays){
+                ok = true;
+                foreach(Tag* tag, this->tagsSelected){
+                    if(!tag->getListWays().contains(way)){
+                        ok = false;
+                    }
+                }
+                if(ok){
+                    if(!resultList.contains(way)){
+                        resultList.append(way);
+                    }
                 }
             }
-            if(ok){
-                if(!resultList.contains(way)){
-                    resultList.append(way);
+        }else{
+            foreach(Tag* tag, this->tagsSelected){
+                foreach(QString way, tag->getListWays()){
+                    if(!resultList.contains(way)){
+                        resultList.append(way);
+                    }
                 }
             }
         }
@@ -251,10 +267,16 @@ void TabRecherche::supWay(){
     if(nb>0){
         this->view->setModel(NULL);
         QMessageBox::information(this,"Information", "Vos modifications ont bien été prise.");
+        this->initialisationButtons();
     }else{
         QMessageBox::information(this,"Information", "Aucune désassociation a été effectuée.");
     }
-    this->initialisationButtons();
+}
+
+void TabRecherche::checkboxChanged(){
+    if(!this->tagsSelected.isEmpty()){
+        recherche();
+    }
 }
 
 TabRecherche::~TabRecherche()

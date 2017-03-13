@@ -34,6 +34,7 @@ private :
     QStandardItemModel* model;
     QMenu* menuTag;
     QMenu* menuWay;
+    QCheckBox* modeRecherche;
 
 public :
     TabRecherche(Tags *tags, QWidget* parent = 0);
@@ -50,6 +51,7 @@ private slots:
     void lancer();
     void supTag();
     void supWay();
+    void checkboxChanged();
 
 };
 #endif // TABRECHERCHE_H

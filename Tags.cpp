@@ -46,7 +46,7 @@ void Tags::add_tag(QString name, bool write){
     }
     if(ok){
         if(write){
-            QFile file("Config.txt");
+            QFile file("Config/Config.txt");
             if (file.open(QIODevice::Append | QIODevice::Text))
             {
                 QTextStream out(&file);
@@ -58,13 +58,13 @@ void Tags::add_tag(QString name, bool write){
 }
 
 void Tags::supprimerTag(Tag* tag){
-    QFile file("ConfigTag"+tag->getName()+".txt");
+    QFile file("Config/ConfigTag"+tag->getName()+".txt");
     file.remove();
-    QFile fileConfigBefore("Config.txt");
+    QFile fileConfigBefore("Config/Config.txt");
     fileConfigBefore.remove();
     this->ListTags.removeAll(tag);
     foreach(Tag* tag, this->ListTags){
-        QFile file("Config.txt");
+        QFile file("Config/Config.txt");
         if (file.open(QIODevice::Append | QIODevice::Text))
         {
             QTextStream out(&file);
@@ -76,7 +76,7 @@ void Tags::supprimerTag(Tag* tag){
 }
 
 void Tags::initialiserTagsFiles(){
-    QFile inputFile("Config.txt");
+    QFile inputFile("Config/Config.txt");
     if (inputFile.open(QIODevice::ReadOnly))
     {
        QTextStream in(&inputFile);

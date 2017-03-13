@@ -33,9 +33,9 @@ int main(int argc, char *argv[])
     QMenuBar* bar = new QMenuBar(&MesOnglets);
 
     QMenu* menu1 = new QMenu("Fichier");
-    QAction* act = new QAction(QObject::tr("E&xit"),&MesOnglets);
+    QAction* act = new QAction(QObject::tr("Quitter"),&MesOnglets);
     act->setShortcut(QObject::tr("Ctrl+Q"));
-    act->setStatusTip(QObject::tr("Exit the application"));
+    act->setStatusTip(QObject::tr("Quitter l'application"));
     menu1->addAction(act);
     QObject::connect(act, SIGNAL(triggered()), &MesOnglets, SLOT(close()));
 

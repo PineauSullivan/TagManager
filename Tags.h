@@ -6,6 +6,7 @@
 #include <QWidgetO.h>
 #include <QFile>
 #include <QTextStream>
+#include <QCoreApplication>
 
 class Tags
 {
