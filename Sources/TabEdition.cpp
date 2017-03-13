@@ -4,6 +4,7 @@
 
 TabEdition::TabEdition(Tags *tags,QWidget* parent) : QWidgetO(parent)
 {
+
     setMouseTracking(true);
     this->model = new QDirModel(this);
 
@@ -39,11 +40,11 @@ TabEdition::TabEdition(Tags *tags,QWidget* parent) : QWidgetO(parent)
     }
     this->creerTag = new QPushButton("+ Créer tag",this);
     connect(this->creerTag, SIGNAL(clicked()), this, SLOT(creationTag()));
-    Style::setStyle(this->creerTag,3);
+    Style::setStyle(this->creerTag,5);
 
     this->associerTag = new QPushButton("Associer >",this);
     connect(this->associerTag, SIGNAL(clicked()), this, SLOT(association()));
-    Style::setStyle(this->associerTag,1);
+    Style::setStyle(this->associerTag,5);
 
     this->menuTag = new QMenu(this);
     this->menuTag->addAction("Supprimer");
@@ -69,17 +70,22 @@ void TabEdition::creationTag()
 
     if (ok && !tag.isEmpty() && !contain)
     {
-        QPushButtonPlus* button = new QPushButtonPlus(tag,this);
-        Style::setStyle(button,1);
-        this->buttonsList.append(button);
-        this->tags->add_tag(tag, true);
-        initialisationButtonsList();
-        QMessageBox::information(this, "Tag", "Le " + tag + " a bien été ajouté.");
-        this->tags->getTabRecherche()->initialisationButtons();
+        if(tag.size()<11){
+            QPushButtonPlus* button = new QPushButtonPlus(tag,this);
+            Style::setStyle(button,1);
+            this->buttonsList.append(button);
+            this->tags->add_tag(tag, true);
+            initialisationButtonsList();
+            QMessageBox::information(this, "Tag", "Le " + tag + " a bien été ajouté.");
+            this->tags->getTabRecherche()->initialisationButtons();
+
+        }else{
+            QMessageBox::critical(this, "Erreur création Tag", "Veuillez saisir un nom de tag inférieur ou égal à 10 caractères.");
+        }
     }
     else
     {
-        QMessageBox::critical(this, "Erreur Tag", "Aucun tag n'a été ajouté.");
+        QMessageBox::critical(this, "Erreur création Tag", "Aucun tag n'a été ajouté.");
     }
 }
 
@@ -179,16 +185,17 @@ QString TabEdition::toStringWay(){
     return result;
 }
 
+//fonction permettant d'afficher les labels
 void TabEdition::setLabels(){
-    this->resultLabelTag->setText(toStringTag());
-    this->resultLabelWay->setText(toStringWay());
+//    this->resultLabelTag->setText(toStringTag());
+//    this->resultLabelWay->setText(toStringWay());
 }
 
 
 void TabEdition::initialisationButtons(){
     int i=0;
     this->view->setGeometry(QRect(QPoint(0, 0),
-                              QSize(900, 600)));
+                              QSize(900, 700)));
 
     this->resultLabelTag->setGeometry(QRect(QPoint(0, 605),
                                     QSize(900, 50)));
@@ -210,7 +217,7 @@ void TabEdition::initialisationButtons(){
 
     this->creerTag->setGeometry(QRect(QPoint(((i)%3)*110+905, ((i)/3)*55),
                                                           QSize(100, 50)));
-    this->associerTag->setGeometry(QRect(QPoint(((i)%3)+905, 625),
+    this->associerTag->setGeometry(QRect(QPoint(((i)%3)+905, 650),
                                          QSize(325, 50)));
     clearSelected();
 }
@@ -318,6 +325,16 @@ void TabEdition::sup(QString name){
     this->initialisationButtonsList();
     this->initialisationButtons();
 }
+
+void TabEdition::messageAide(){
+    QMessageBox::information(this,"Aide Edition", "Comment créer un tag ?<br/>"
+                                          "Cliquer sur 'créer tag'.<br/><br/>"
+                                          "Comment associer un ou plusieus éléments à un ou plusieurs tags ?<br/>"
+                                          "Cliquer sur les éléments et sur les tags puis sur le boutton Associer. <br/><br/>"
+                                          "Comment supprimer un tag ?<br/>"
+                                          "Utiliser le clic droit sur le tag en question.<br/>");
+}
+
 TabEdition::~TabEdition()
 {
 }

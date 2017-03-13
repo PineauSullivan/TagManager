@@ -20,6 +20,10 @@ HEADERS += \
     Headers/Style.h \
     Headers/MyView.h
 
+RESOURCES +=
+
 FORMS +=
 
 DISTFILES +=
+
+RESOURCES +=

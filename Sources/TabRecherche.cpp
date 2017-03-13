@@ -14,7 +14,7 @@ TabRecherche::TabRecherche(Tags *tags, QWidget* parent) : QWidgetO(parent)
     this->view->setVisible(true);
 
     this->view->setGeometry(QRect(QPoint(0, 200),
-                              QSize(this->width()*2,this->height())));
+                              QSize(1300,500)));
     connect(this->view,SIGNAL(doubleClicked()), this, SLOT(lancer()));
     connect(this->view,SIGNAL(rightClicked()), this, SLOT(menuWayClicked()));
 
@@ -34,13 +34,25 @@ TabRecherche::TabRecherche(Tags *tags, QWidget* parent) : QWidgetO(parent)
     connect(this->menuTag, SIGNAL(triggered(QAction*)), this, SLOT(supTag()));
     this->menuTag->setVisible(false);
 
-    this->modeRecherche = new QCheckBox("Mode Recherche ET logique",this);
-    this->modeRecherche->setGeometry(QRect(QPoint((9)*110, 3*55+5),
-                                                         QSize(220, 25)));
+    this->modeRechercheET = new QCheckBox("Recherche ET",this);
+    this->modeRechercheET->setGeometry(QRect(QPoint((9)*110, 3*55+5),
+                                                         QSize(130, 25)));
 
-    connect(this->modeRecherche,SIGNAL(stateChanged(int)), this, SLOT(checkboxChanged()));
-    this->modeRecherche->setVisible(true);
+    connect(this->modeRechercheET,SIGNAL(clicked(bool)), this, SLOT(checkboxETChanged()));
+    this->modeRechercheET->setVisible(true);
+
+
+    this->modeRechercheOU = new QCheckBox("Recherche OU",this);
+    this->modeRechercheOU->setGeometry(QRect(QPoint((9)*110 + 135, 3*55+5),
+                                                         QSize(130, 25)));
+
+    connect(this->modeRechercheOU,SIGNAL(clicked(bool)), this, SLOT(checkboxOUChanged()));
+    this->modeRechercheOU->setChecked(true);
+    this->modeRechercheOU->setVisible(true);
+
+
     initialisationButtons();
+
 }
 
 void TabRecherche::initialisationButtons(){
@@ -65,19 +77,22 @@ void TabRecherche::initialisationButtons(){
             button->setVisible(true);
         }
     }
-    if(nbtag==0){
-        QPushButtonPlus* button = new QPushButtonPlus("Aucun Tag",this);
-        this->buttonsList.append(button);
-        Style::setStyle(button, 2);
-        connect(button, SIGNAL(leftClicked()), this, SLOT(aucunTag()));
-        button->setVisible(true);
-    }
     int i = 0;
     foreach(QPushButton* button, this->buttonsList) {
         button->setGeometry(QRect(QPoint((i%10)*110, (i/10)*55+5),
                                                               QSize(100, 50)));
+
         button->setVisible(true);
         ++i;
+    }
+    if(nbtag==0){
+        QPushButtonPlus* button = new QPushButtonPlus("Aucun fichier/dossier associé",this);
+        this->buttonsList.append(button);
+        Style::setStyle(button, 2);
+        button->setGeometry(QRect(QPoint((0%10)*110, (0/10)*55+5),
+                                                              QSize(220, 50)));
+        connect(button, SIGNAL(leftClicked()), this, SLOT(aucunTag()));
+        button->setVisible(true);
     }
 
 
@@ -110,7 +125,7 @@ void TabRecherche::recherche(){
     QList<QString> resultList;
     if(!this->tagsSelected.isEmpty()){
         QList<QString> firstWays = this->tagsSelected.first()->getListWays();
-        if(this->modeRecherche->isChecked()){
+        if(this->modeRechercheET->isChecked()){
             bool ok = true;
             foreach(QString way, firstWays){
                 ok = true;
@@ -272,10 +287,32 @@ void TabRecherche::supWay(){
     }
 }
 
-void TabRecherche::checkboxChanged(){
+void TabRecherche::checkboxETChanged(){
+    this->modeRechercheET->setChecked(true);
+    this->modeRechercheOU->setChecked(false);
+
     if(!this->tagsSelected.isEmpty()){
         recherche();
     }
+}
+
+void TabRecherche::checkboxOUChanged(){
+    this->modeRechercheET->setChecked(false);
+    this->modeRechercheOU->setChecked(true);
+
+    if(!this->tagsSelected.isEmpty()){
+        recherche();
+    }
+}
+
+void TabRecherche::messageAide(){
+    QMessageBox::information(this,"Aide Recherche", "Pourquoi je n'ai pas de tag ? <br/> "
+                                          "Il faut créer au moins un tag puis l'associer à l'aide du mode Edition.<br/><br/>"
+                                          "A quoi correspondent les deux modes de recherche ? <br/>"
+                                          "Mode ET : filtre les éléments qui possèdent la totalité des tags sélectionnés.<br/>"
+                                          "Mode OU : filtre les éléments qui possèdent au moins un des tags sélectionnés.<br/><br/>"
+                                          "Comment lancer ou dissocier un élément d'un tag ou supprimer un tag ?<br/>"
+                                          "Utiliser le clic droit sur le chemin de l'élément en question.<br/>");
 }
 
 TabRecherche::~TabRecherche()

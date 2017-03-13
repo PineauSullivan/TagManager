@@ -60,5 +60,8 @@ private slots:
         void supTag();
         void selectedAuto();
 
+public slots:
+        void messageAide();
+
 };
 #endif // TABEDITION_H
