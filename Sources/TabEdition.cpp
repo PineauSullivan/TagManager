@@ -5,23 +5,23 @@
 TabEdition::TabEdition(Tags *tags,QWidget* parent) : QWidgetO(parent)
 {
 
-    this->model = new QFileSystemModel(this);
+    this->model = new QDirModel(this);
 
-
-    this->model->setRootPath("/");
+//    this->model->setRootPath("/");
 
     this->view = new QTreeView(this);
     this->view->setModel(this->model);
-    QModelIndex idx = this->model->index("/home/");
+    QModelIndex idx = this->model->index(QDir::homePath());
     this->view->setRootIndex(idx);
-
     this->view->setColumnWidth(0,700);
     this->view->setColumnWidth(2,200);
     this->view->setColumnHidden(1,true);
     this->view->setColumnHidden(3,true);
     this->view->show();
+    this->view->setSelectionMode(QAbstractItemView::ExtendedSelection);
     this->view->setVisible(true);
-    connect(this->view,SIGNAL(doubleClicked(QModelIndex)),this, SLOT(selected()));
+//    connect(this->view,SIGNAL(doubleClicked(QModelIndex)),this, SLOT(selected()));
+    connect(this->view,SIGNAL(clicked(QModelIndex)),this, SLOT(selectedAuto()));
 
 
     this->resultLabelTag=new QLabel(this);
@@ -266,6 +266,8 @@ void TabEdition::clearSelected(){
     this->waysSelected.clear();
 }
 
+
+//A Enlever
 void TabEdition::selected(){
     QModelIndex index = this->view->currentIndex();
     QFileInfo fileInfo = this->model->fileInfo(index);
@@ -276,6 +278,19 @@ void TabEdition::selected(){
     }else{
         this->waysSelected.append(chemin);
         QMessageBox::information(this,"Fichier sélectionné", "Fichier sélectionné "+chemin);
+    }
+
+    setLabels();
+}
+
+void TabEdition::selectedAuto(){
+    this->waysSelected.clear();
+    foreach(QModelIndex index, this->view->selectionModel()->selectedIndexes()){
+        QFileInfo fileInfo = this->model->fileInfo(index);
+        QString chemin = fileInfo.absoluteFilePath();
+        if(!this->waysSelected.contains(chemin)){
+            this->waysSelected.append(chemin);
+        }
     }
     setLabels();
 }

@@ -20,6 +20,7 @@
 #include <Headers/Style.h>
 #include <Headers/QPushButtonPlus.h>
 #include <QMenuBar>
+#include <QDirModel>
 
 class TabEdition : public QWidgetO
 {
@@ -31,7 +32,7 @@ private :
         QPushButton* associerTag;
         QList<QPushButtonPlus*> buttonsList;
         QTreeView* view;
-        QFileSystemModel* model;
+        QDirModel* model;
         QList<Tag*> tagsSelected;
         QList<QString> waysSelected;
         QLabel* resultLabelTag;
@@ -56,6 +57,7 @@ private slots:
         void setLabels();
         void menuTagClicked();
         void supTag();
+        void selectedAuto();
 
 };
 #endif // TABEDITION_H
