@@ -171,7 +171,7 @@ void TabRecherche::supTag(){
         this->initialisationButtons();
         this->menuTag->setVisible(false);
         this->view->setModel(NULL);
-        QMessageBox::information(this, "Suppression de Tag", "Tag :"+nomtag+" supprimé");
+        QMessageBox::information(this, "Suppression de Tag", "Tag : "+nomtag+" a bien été supprimé.");
 
     }
     this->menuTag->setVisible(false);
@@ -182,15 +182,14 @@ void TabRecherche::supTag(){
 void TabRecherche::menuTagClicked(){
     this->menuWay->setVisible(false);
 
-    QPushButton *button = (QPushButton *)sender();
-
+    QPushButtonPlus *button = (QPushButtonPlus *)sender();
 
     if(this->menuTag->isVisible()){
         this->tagEnSuppression = NULL;
         this->menuTag->setVisible(false);
     }else{
         this->tagEnSuppression = this->tags->getTag(button->text());
-        this->menuTag->setGeometry(QRect(QPoint(button->pos().x()+90,button->pos().y()+90),
+        this->menuTag->setGeometry(QRect(QPoint(button->getPos().x()+button->x()+this->pos().x()+50,button->getPos().y()+button->y()+this->pos().y()+50),
                                QSize(112, 23)));
         this->menuTag->raise();
         this->menuTag->setVisible(true);
@@ -203,10 +202,10 @@ void TabRecherche::menuWayClicked(){
 
     QString chemin = index.data().toString();
 
-    if(this->menuWay->isVisible()){
+    if(this->menuWay->isVisible()||this->tagsSelected.empty()){
         this->menuWay->setVisible(false);
     }else{
-        this->menuWay->setGeometry(QRect(QPoint(this->view->pos().x()+90,this->view->pos().y()+90),
+        this->menuWay->setGeometry(QRect(QPoint(this->view->getPos().x()+this->view->x()+70,this->view->getPos().y()+this->view->y()+80),
                                          QSize(112, 46)));
         this->menuWay->raise();
         this->menuWay->setVisible(true);

@@ -4,7 +4,7 @@
 
 TabEdition::TabEdition(Tags *tags,QWidget* parent) : QWidgetO(parent)
 {
-
+    setMouseTracking(true);
     this->model = new QDirModel(this);
 
 //    this->model->setRootPath("/");
@@ -215,15 +215,16 @@ void TabEdition::initialisationButtons(){
     clearSelected();
 }
 void TabEdition::menuTagClicked(){
-    QPushButton *button = (QPushButton *)sender();
+    QPushButtonPlus *button = (QPushButtonPlus *)sender();
 
+//    QMessageBox::critical(this,"Association", "pos x "+QString::number(button->getPos().x())+" pos y "+QString::number(button->getPos().y()));
 
     if(this->menuTag->isVisible()){
         this->tagEnSuppression = NULL;
         this->menuTag->setVisible(false);
     }else{
         this->tagEnSuppression = this->tags->getTag(button->text());
-        this->menuTag->setGeometry(QRect(QPoint(button->pos().x()+90,button->pos().y()+90),
+        this->menuTag->setGeometry(QRect(QPoint(button->getPos().x()+button->x()+50,button->getPos().y()+button->y()+50),
                                QSize(112, 23)));
         this->menuTag->raise();
         this->menuTag->setVisible(true);
@@ -244,7 +245,7 @@ void TabEdition::supTag(){
         this->setLabels();
         this->tags->getTabRecherche()->initialisationButtons();
         this->menuTag->setVisible(false);
-        QMessageBox::information(this, "Suppression de Tag", "Tag :"+nomtag+" supprimé");
+        QMessageBox::information(this, "Suppression de Tag", "Tag : "+nomtag+" a bien été supprimé.");
 
     }
     this->menuTag->setVisible(false);
