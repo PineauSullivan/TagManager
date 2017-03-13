@@ -189,7 +189,7 @@ void TabRecherche::menuTagClicked(){
         this->menuTag->setVisible(false);
     }else{
         this->tagEnSuppression = this->tags->getTag(button->text());
-        this->menuTag->setGeometry(QRect(QPoint(button->getPos().x()+button->x()+this->pos().x()+50,button->getPos().y()+button->y()+this->pos().y()+50),
+        this->menuTag->setGeometry(QRect(QPoint(button->getPos().x()+button->x()+this->pos().x()+50,button->getPos().y()+button->y()+this->pos().y()+53),
                                QSize(112, 23)));
         this->menuTag->raise();
         this->menuTag->setVisible(true);
@@ -205,7 +205,7 @@ void TabRecherche::menuWayClicked(){
     if(this->menuWay->isVisible()||this->tagsSelected.empty()){
         this->menuWay->setVisible(false);
     }else{
-        this->menuWay->setGeometry(QRect(QPoint(this->view->getPos().x()+this->view->x()+70,this->view->getPos().y()+this->view->y()+80),
+        this->menuWay->setGeometry(QRect(QPoint(this->view->getPos().x()+this->view->x()+77,this->view->getPos().y()+this->view->y()+80),
                                          QSize(112, 46)));
         this->menuWay->raise();
         this->menuWay->setVisible(true);

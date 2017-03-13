@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
 
     bar->addMenu(menu1);
 
-
+    MesOnglets.setMinimumSize(1200,700);
     //Affichage de l'application
     MesOnglets.showMaximized();
 

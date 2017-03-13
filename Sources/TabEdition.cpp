@@ -224,7 +224,7 @@ void TabEdition::menuTagClicked(){
         this->menuTag->setVisible(false);
     }else{
         this->tagEnSuppression = this->tags->getTag(button->text());
-        this->menuTag->setGeometry(QRect(QPoint(button->getPos().x()+button->x()+50,button->getPos().y()+button->y()+50),
+        this->menuTag->setGeometry(QRect(QPoint(button->getPos().x()+button->x()+50,button->getPos().y()+button->y()+53),
                                QSize(112, 23)));
         this->menuTag->raise();
         this->menuTag->setVisible(true);
