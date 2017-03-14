@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>TagManager:  Fichier source de Headers/TabEdition.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TagManager
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&#160;associées</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_692516b589a32b3bfce781ca9f6d1534.html">Headers</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">TabEdition.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_tab_edition_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#ifndef TABEDITION_H</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define TABEDITION_H</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;QApplication&gt;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;QPushButton&gt;</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;QTableWidget&gt;</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;QHBoxLayout&gt;</span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;QMessageBox&gt;</span></div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;QInputDialog&gt;</span></div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;QTreeView&gt;</span></div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_tags_8h.html">Headers/Tags.h</a>&gt;</span></div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;QFileDialog&gt;</span></div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;QFileSystemModel&gt;</span></div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;QListView&gt;</span></div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;QHeaderView&gt;</span></div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;QList&gt;</span></div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_tag_8h.html">Headers/Tag.h</a>&gt;</span></div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;QLabel&gt;</span></div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_q_widget_o_8h.html">Headers/QWidgetO.h</a>&gt;</span></div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_style_8h.html">Headers/Style.h</a>&gt;</span></div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &lt;Headers/QPushButtonPlus.h&gt;</span></div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &lt;QMenuBar&gt;</span></div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &lt;QDirModel&gt;</span></div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;QMouseEvent&gt;</span></div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div><div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="class_tab_edition.html">   40</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_tab_edition.html">TabEdition</a> : <span class="keyword">public</span> <a class="code" href="class_q_widget_o.html">QWidgetO</a></div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;{</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    Q_OBJECT</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">private</span> :</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <a class="code" href="class_tags.html">Tags</a>* tags;                         <span class="comment">// attribut : pointeur vers l&#39;objet tags</span></div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        QPushButton* creerTag;              <span class="comment">// attribut : pointeur vers le button creerTag</span></div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        QPushButton* associerTag;           <span class="comment">// attribut : pointeur vers le button associerTag</span></div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <a class="code" href="class_tag.html">Tag</a>* tagEnSuppression;              <span class="comment">// attribut : pointeur vers le tag qui a été selectionné pour être supprimé</span></div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        QMenu* menuTag;                     <span class="comment">// attribut : pointer vers le menu d&#39;un clic droit sur un tag</span></div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        QList&lt;QPushButtonPlus*&gt; buttonsList;<span class="comment">// attribut : liste de tout les boutons (1 bouton = 1 tag)</span></div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        QList&lt;Tag*&gt; tagsSelected;           <span class="comment">// attribut : liste des tags sélectionnés</span></div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        QList&lt;QString&gt; waysSelected;        <span class="comment">// attribut : liste des chemins/fichiers/dossiers sélectionné</span></div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        QTreeView* view;                    <span class="comment">// attribut : view des fichiers/dossier</span></div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        QDirModel* model;                   <span class="comment">// attribut : model des fichiers/dossier</span></div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">public</span> :</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <a class="code" href="class_tab_edition.html#ad02a3fd1d5aede64426945dc7e157a68">TabEdition</a>(<a class="code" href="class_tags.html">Tags</a> *tags ,QWidget* parent = 0);</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_tab_edition.html#a2730367dae1f80a45875acb579b6f93e">initialisationButtons</a>();</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_tab_edition.html#a9be046c1366dbee5f88becd6e02fe413">initialisationButtonsList</a>();</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_tab_edition.html#a9c8e4c8d033c7c0d5b4e1a37cb47d0f3">clearSelected</a>();</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_tab_edition.html#a844a8c4c5554d991957682ea9060cc59">sup</a>(QString name);</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <a class="code" href="class_tab_edition.html#ac7c6c640977a8c3273ee816762972f40">~TabEdition</a>();</div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keyword">private</span> slots:</div><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordtype">void</span> creationTag();</div><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div><div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="keywordtype">void</span> tagClicked();</div><div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div><div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keywordtype">void</span> association();</div><div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div><div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keywordtype">void</span> menuTagClicked();</div><div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div><div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="keywordtype">void</span> supTag();</div><div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div><div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <span class="keywordtype">void</span> selectedAuto();</div><div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div><div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keyword">public</span> slots:</div><div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_tab_edition.html#ae7affcb0acaf7fafdcc5586804907aed">messageAide</a>();</div><div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div><div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;};</div><div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor">#endif // TABEDITION_H</span></div><div class="ttc" id="_style_8h_html"><div class="ttname"><a href="_style_8h.html">Style.h</a></div><div class="ttdoc">Définition d&amp;#39;une classe de Style. </div></div>
+<div class="ttc" id="class_tab_edition_html_a844a8c4c5554d991957682ea9060cc59"><div class="ttname"><a href="class_tab_edition.html#a844a8c4c5554d991957682ea9060cc59">TabEdition::sup</a></div><div class="ttdeci">void sup(QString name)</div><div class="ttdoc">procédure permettant de supprimer un tag de sa liste </div><div class="ttdef"><b>Definition:</b> TabEdition.cpp:266</div></div>
+<div class="ttc" id="class_tab_edition_html_ae7affcb0acaf7fafdcc5586804907aed"><div class="ttname"><a href="class_tab_edition.html#ae7affcb0acaf7fafdcc5586804907aed">TabEdition::messageAide</a></div><div class="ttdeci">void messageAide()</div><div class="ttdoc">procédure SLOT publique permettant d&amp;#39;afficher une pop-up d&amp;#39;aide edition </div><div class="ttdef"><b>Definition:</b> TabEdition.cpp:282</div></div>
+<div class="ttc" id="_tags_8h_html"><div class="ttname"><a href="_tags_8h.html">Tags.h</a></div><div class="ttdoc">Définition d&amp;#39;une classe de Tabs. </div></div>
+<div class="ttc" id="class_tab_edition_html_ac7c6c640977a8c3273ee816762972f40"><div class="ttname"><a href="class_tab_edition.html#ac7c6c640977a8c3273ee816762972f40">TabEdition::~TabEdition</a></div><div class="ttdeci">~TabEdition()</div><div class="ttdoc">Destructeur de TabEdition. </div><div class="ttdef"><b>Definition:</b> TabEdition.cpp:292</div></div>
+<div class="ttc" id="_tag_8h_html"><div class="ttname"><a href="_tag_8h.html">Tag.h</a></div><div class="ttdoc">Définition d&amp;#39;une classe de Tab. </div></div>
+<div class="ttc" id="class_q_widget_o_html"><div class="ttname"><a href="class_q_widget_o.html">QWidgetO</a></div><div class="ttdoc">Classe permettant de redéfinir la classe QWidget. </div><div class="ttdef"><b>Definition:</b> QWidgetO.h:21</div></div>
+<div class="ttc" id="class_tab_edition_html_a9be046c1366dbee5f88becd6e02fe413"><div class="ttname"><a href="class_tab_edition.html#a9be046c1366dbee5f88becd6e02fe413">TabEdition::initialisationButtonsList</a></div><div class="ttdeci">void initialisationButtonsList()</div><div class="ttdoc">procédure permettant d&amp;#39;initialiser les buttons des tags </div><div class="ttdef"><b>Definition:</b> TabEdition.cpp:233</div></div>
+<div class="ttc" id="class_tab_edition_html"><div class="ttname"><a href="class_tab_edition.html">TabEdition</a></div><div class="ttdoc">Classe permettant de définir la classe TabEdition. </div><div class="ttdef"><b>Definition:</b> TabEdition.h:40</div></div>
+<div class="ttc" id="class_tag_html"><div class="ttname"><a href="class_tag.html">Tag</a></div><div class="ttdoc">Classe permettant de représenter un tag (chaque tag possède un nom et une liste de chemin qui lui ont...</div><div class="ttdef"><b>Definition:</b> Tag.h:25</div></div>
+<div class="ttc" id="class_tags_html"><div class="ttname"><a href="class_tags.html">Tags</a></div><div class="ttdoc">Classe permettant de lister les différents tags et possède un pointeur vers les deux modes...</div><div class="ttdef"><b>Definition:</b> Tags.h:26</div></div>
+<div class="ttc" id="_q_widget_o_8h_html"><div class="ttname"><a href="_q_widget_o_8h.html">QWidgetO.h</a></div><div class="ttdoc">Définition d&amp;#39;une classe de QWidgetO. </div></div>
+<div class="ttc" id="class_tab_edition_html_ad02a3fd1d5aede64426945dc7e157a68"><div class="ttname"><a href="class_tab_edition.html#ad02a3fd1d5aede64426945dc7e157a68">TabEdition::TabEdition</a></div><div class="ttdeci">TabEdition(Tags *tags, QWidget *parent=0)</div><div class="ttdoc">Constructeur, crée un objet TabEdition. </div><div class="ttdef"><b>Definition:</b> TabEdition.cpp:13</div></div>
+<div class="ttc" id="class_tab_edition_html_a9c8e4c8d033c7c0d5b4e1a37cb47d0f3"><div class="ttname"><a href="class_tab_edition.html#a9c8e4c8d033c7c0d5b4e1a37cb47d0f3">TabEdition::clearSelected</a></div><div class="ttdeci">void clearSelected()</div><div class="ttdoc">procédure permettant de vider les listes de selection </div><div class="ttdef"><b>Definition:</b> TabEdition.cpp:248</div></div>
+<div class="ttc" id="class_tab_edition_html_a2730367dae1f80a45875acb579b6f93e"><div class="ttname"><a href="class_tab_edition.html#a2730367dae1f80a45875acb579b6f93e">TabEdition::initialisationButtons</a></div><div class="ttdeci">void initialisationButtons()</div><div class="ttdoc">procédure permettant d&amp;#39;initialiser les buttons du widget </div><div class="ttdef"><b>Definition:</b> TabEdition.cpp:167</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>

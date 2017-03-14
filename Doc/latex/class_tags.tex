@@ -1,0 +1,179 @@
+\hypertarget{class_tags}{}\section{Référence de la classe Tags}
+\label{class_tags}\index{Tags@{Tags}}
+
+
+Classe permettant de lister les différents tags et possède un pointeur vers les deux modes.  
+
+
+
+
+{\ttfamily \#include $<$Tags.\+h$>$}
+
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_tags_a8d3045112662e0ace4b8bafb5a3e8f57}{Tags} ()\hypertarget{class_tags_a8d3045112662e0ace4b8bafb5a3e8f57}{}\label{class_tags_a8d3045112662e0ace4b8bafb5a3e8f57}
+
+\begin{DoxyCompactList}\small\item\em Constructeur, crée un objet \hyperlink{class_tags}{Tags}. \end{DoxyCompactList}\item 
+\hyperlink{class_q_widget_o}{Q\+WidgetO} $\ast$ \hyperlink{class_tags_ac7b0c253bbea81ebec2f17fd628b67e2}{get\+Tab\+Recherche} ()
+\begin{DoxyCompactList}\small\item\em Getter de l\textquotesingle{}attribut \hyperlink{class_tab_recherche}{Tab\+Recherche}. \end{DoxyCompactList}\item 
+\hyperlink{class_q_widget_o}{Q\+WidgetO} $\ast$ \hyperlink{class_tags_aea3b5ed347a1eb66f41fc84d0d174d45}{get\+Tab\+Edition} ()
+\begin{DoxyCompactList}\small\item\em Getter de l\textquotesingle{}attribut \hyperlink{class_tab_edition}{Tab\+Edition}. \end{DoxyCompactList}\item 
+Q\+List$<$ \hyperlink{class_tag}{Tag} $\ast$ $>$ \hyperlink{class_tags_aab1b32558374b97adde959c3822d804d}{get\+List\+Tags} ()
+\begin{DoxyCompactList}\small\item\em Getter de l\textquotesingle{}attribut List\+Tags. \end{DoxyCompactList}\item 
+\hyperlink{class_tag}{Tag} $\ast$ \hyperlink{class_tags_a8068c802b3da7261d9b271fa566d6de7}{get\+Tag} (Q\+String name\+Tag)
+\begin{DoxyCompactList}\small\item\em Getter d\textquotesingle{}un pointeur de tag possèdant le même nom que celui mis en paramètre. \end{DoxyCompactList}\item 
+void \hyperlink{class_tags_a57abf29a5ab4a089a7d8e6b55c1f508f}{set\+Q\+Widget\+Recherche} (\hyperlink{class_q_widget_o}{Q\+WidgetO} $\ast$\hyperlink{class_tab_recherche}{Tab\+Recherche})
+\begin{DoxyCompactList}\small\item\em Setter de l\textquotesingle{}attribut \hyperlink{class_tab_recherche}{Tab\+Recherche}. \end{DoxyCompactList}\item 
+void \hyperlink{class_tags_a62d0a0430258dc94fb6aa41bd5558b19}{set\+Q\+Widget\+Edition} (\hyperlink{class_q_widget_o}{Q\+WidgetO} $\ast$\hyperlink{class_tab_edition}{Tab\+Edition})
+\begin{DoxyCompactList}\small\item\em Setter de l\textquotesingle{}attribut \hyperlink{class_tab_edition}{Tab\+Edition}. \end{DoxyCompactList}\item 
+void \hyperlink{class_tags_a72f68c1babf29e2c5f1e49356dbe71ab}{supprimer\+Tag} (\hyperlink{class_tag}{Tag} $\ast$tag)
+\begin{DoxyCompactList}\small\item\em Procédure permettant de supprimer un tag dans \hyperlink{class_tags}{Tags} et de modifier/supprimer les fichiers de configs respectifs. \end{DoxyCompactList}\item 
+void \hyperlink{class_tags_ac595bd17429b50a9a4b35f993670b44b}{initialiser\+Tags\+Files} ()\hypertarget{class_tags_ac595bd17429b50a9a4b35f993670b44b}{}\label{class_tags_ac595bd17429b50a9a4b35f993670b44b}
+
+\begin{DoxyCompactList}\small\item\em procédure permettant d\textquotesingle{}initialiser tous les tags avec le fichier de config \end{DoxyCompactList}\item 
+void \hyperlink{class_tags_a837588d5b1fa060ecc1c4c37cedbbe16}{add\+\_\+tag} (Q\+String name, bool write)
+\begin{DoxyCompactList}\small\item\em Procédure permettant d\textquotesingle{}ajouter un tag dans \hyperlink{class_tags}{Tags} et de modifier/ajouter les fichiers de configs respectifs avec ecriture ou non. \end{DoxyCompactList}\item 
+\hyperlink{class_tags_a8fbc021de7f063e0a8f0dc79a8894083}{$\sim$\+Tags} ()\hypertarget{class_tags_a8fbc021de7f063e0a8f0dc79a8894083}{}\label{class_tags_a8fbc021de7f063e0a8f0dc79a8894083}
+
+\begin{DoxyCompactList}\small\item\em Destructeur de \hyperlink{class_tags}{Tags}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Classe permettant de lister les différents tags et possède un pointeur vers les deux modes. 
+
+\subsection{Documentation des fonctions membres}
+\index{Tags@{Tags}!add\+\_\+tag@{add\+\_\+tag}}
+\index{add\+\_\+tag@{add\+\_\+tag}!Tags@{Tags}}
+\subsubsection[{\texorpdfstring{add\+\_\+tag(\+Q\+String name, bool write)}{add_tag(QString name, bool write)}}]{\setlength{\rightskip}{0pt plus 5cm}void Tags\+::add\+\_\+tag (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{name, }
+\item[{bool}]{write}
+\end{DoxyParamCaption}
+)}\hypertarget{class_tags_a837588d5b1fa060ecc1c4c37cedbbe16}{}\label{class_tags_a837588d5b1fa060ecc1c4c37cedbbe16}
+
+
+Procédure permettant d\textquotesingle{}ajouter un tag dans \hyperlink{class_tags}{Tags} et de modifier/ajouter les fichiers de configs respectifs avec ecriture ou non. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em Q\+String,name} & \\
+\hline
+{\em bool,write} & \\
+\hline
+\end{DoxyParams}
+\index{Tags@{Tags}!get\+List\+Tags@{get\+List\+Tags}}
+\index{get\+List\+Tags@{get\+List\+Tags}!Tags@{Tags}}
+\subsubsection[{\texorpdfstring{get\+List\+Tags()}{getListTags()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+List$<$ {\bf Tag} $\ast$ $>$ Tags\+::get\+List\+Tags (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_tags_aab1b32558374b97adde959c3822d804d}{}\label{class_tags_aab1b32558374b97adde959c3822d804d}
+
+
+Getter de l\textquotesingle{}attribut List\+Tags. 
+
+\begin{DoxyReturn}{Renvoie}
+attribut List\+Tags 
+\end{DoxyReturn}
+\index{Tags@{Tags}!get\+Tab\+Edition@{get\+Tab\+Edition}}
+\index{get\+Tab\+Edition@{get\+Tab\+Edition}!Tags@{Tags}}
+\subsubsection[{\texorpdfstring{get\+Tab\+Edition()}{getTabEdition()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Q\+WidgetO} $\ast$ Tags\+::get\+Tab\+Edition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_tags_aea3b5ed347a1eb66f41fc84d0d174d45}{}\label{class_tags_aea3b5ed347a1eb66f41fc84d0d174d45}
+
+
+Getter de l\textquotesingle{}attribut \hyperlink{class_tab_edition}{Tab\+Edition}. 
+
+\begin{DoxyReturn}{Renvoie}
+attribut \hyperlink{class_tab_edition}{Tab\+Edition} 
+\end{DoxyReturn}
+\index{Tags@{Tags}!get\+Tab\+Recherche@{get\+Tab\+Recherche}}
+\index{get\+Tab\+Recherche@{get\+Tab\+Recherche}!Tags@{Tags}}
+\subsubsection[{\texorpdfstring{get\+Tab\+Recherche()}{getTabRecherche()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Q\+WidgetO} $\ast$ Tags\+::get\+Tab\+Recherche (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_tags_ac7b0c253bbea81ebec2f17fd628b67e2}{}\label{class_tags_ac7b0c253bbea81ebec2f17fd628b67e2}
+
+
+Getter de l\textquotesingle{}attribut \hyperlink{class_tab_recherche}{Tab\+Recherche}. 
+
+\begin{DoxyReturn}{Renvoie}
+attribut \hyperlink{class_tab_recherche}{Tab\+Recherche} 
+\end{DoxyReturn}
+\index{Tags@{Tags}!get\+Tag@{get\+Tag}}
+\index{get\+Tag@{get\+Tag}!Tags@{Tags}}
+\subsubsection[{\texorpdfstring{get\+Tag(\+Q\+String name\+Tag)}{getTag(QString nameTag)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Tag} $\ast$ Tags\+::get\+Tag (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{name\+Tag}
+\end{DoxyParamCaption}
+)}\hypertarget{class_tags_a8068c802b3da7261d9b271fa566d6de7}{}\label{class_tags_a8068c802b3da7261d9b271fa566d6de7}
+
+
+Getter d\textquotesingle{}un pointeur de tag possèdant le même nom que celui mis en paramètre. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em Q\+String,name\+Tag} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Tag$\ast$ 
+\end{DoxyReturn}
+\index{Tags@{Tags}!set\+Q\+Widget\+Edition@{set\+Q\+Widget\+Edition}}
+\index{set\+Q\+Widget\+Edition@{set\+Q\+Widget\+Edition}!Tags@{Tags}}
+\subsubsection[{\texorpdfstring{set\+Q\+Widget\+Edition(\+Q\+Widget\+O $\ast$\+Tab\+Edition)}{setQWidgetEdition(QWidgetO *TabEdition)}}]{\setlength{\rightskip}{0pt plus 5cm}void Tags\+::set\+Q\+Widget\+Edition (
+\begin{DoxyParamCaption}
+\item[{{\bf Q\+WidgetO} $\ast$}]{Tab\+Edition}
+\end{DoxyParamCaption}
+)}\hypertarget{class_tags_a62d0a0430258dc94fb6aa41bd5558b19}{}\label{class_tags_a62d0a0430258dc94fb6aa41bd5558b19}
+
+
+Setter de l\textquotesingle{}attribut \hyperlink{class_tab_edition}{Tab\+Edition}. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em Q\+Widget\+O$\ast$,\hyperlink{class_tab_edition}{Tab\+Edition}} & \\
+\hline
+\end{DoxyParams}
+\index{Tags@{Tags}!set\+Q\+Widget\+Recherche@{set\+Q\+Widget\+Recherche}}
+\index{set\+Q\+Widget\+Recherche@{set\+Q\+Widget\+Recherche}!Tags@{Tags}}
+\subsubsection[{\texorpdfstring{set\+Q\+Widget\+Recherche(\+Q\+Widget\+O $\ast$\+Tab\+Recherche)}{setQWidgetRecherche(QWidgetO *TabRecherche)}}]{\setlength{\rightskip}{0pt plus 5cm}void Tags\+::set\+Q\+Widget\+Recherche (
+\begin{DoxyParamCaption}
+\item[{{\bf Q\+WidgetO} $\ast$}]{Tab\+Recherche}
+\end{DoxyParamCaption}
+)}\hypertarget{class_tags_a57abf29a5ab4a089a7d8e6b55c1f508f}{}\label{class_tags_a57abf29a5ab4a089a7d8e6b55c1f508f}
+
+
+Setter de l\textquotesingle{}attribut \hyperlink{class_tab_recherche}{Tab\+Recherche}. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em Q\+Widget\+O$\ast$,\hyperlink{class_tab_recherche}{Tab\+Recherche}} & \\
+\hline
+\end{DoxyParams}
+\index{Tags@{Tags}!supprimer\+Tag@{supprimer\+Tag}}
+\index{supprimer\+Tag@{supprimer\+Tag}!Tags@{Tags}}
+\subsubsection[{\texorpdfstring{supprimer\+Tag(\+Tag $\ast$tag)}{supprimerTag(Tag *tag)}}]{\setlength{\rightskip}{0pt plus 5cm}void Tags\+::supprimer\+Tag (
+\begin{DoxyParamCaption}
+\item[{{\bf Tag} $\ast$}]{tag}
+\end{DoxyParamCaption}
+)}\hypertarget{class_tags_a72f68c1babf29e2c5f1e49356dbe71ab}{}\label{class_tags_a72f68c1babf29e2c5f1e49356dbe71ab}
+
+
+Procédure permettant de supprimer un tag dans \hyperlink{class_tags}{Tags} et de modifier/supprimer les fichiers de configs respectifs. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em Tag$\ast$,tag} & \\
+\hline
+\end{DoxyParams}
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+Headers/\hyperlink{_tags_8h}{Tags.\+h}\item 
+Sources/\hyperlink{_tags_8cpp}{Tags.\+cpp}\end{DoxyCompactItemize}

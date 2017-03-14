@@ -4,7 +4,7 @@ Dans le module IHM encadré par Eric Languenou de notre formation (Master 1 ALMA
 
 # Programmeurs
 - Killian Gomes
-- SUllivan Pineau
+- Sullivan Pineau
 
 # Lancer cette application
 Effectuer les différentes commandes dans le repertoire courant de l'application via un terminal :

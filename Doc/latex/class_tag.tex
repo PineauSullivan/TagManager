@@ -1,0 +1,158 @@
+\hypertarget{class_tag}{}\section{Référence de la classe Tag}
+\label{class_tag}\index{Tag@{Tag}}
+
+
+Classe permettant de représenter un tag (chaque tag possède un nom et une liste de chemin qui lui ont été associé)  
+
+
+
+
+{\ttfamily \#include $<$Tag.\+h$>$}
+
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_tag_a1dc354cd81ef646b6d1a88f8d792acab}{Tag} (Q\+String name)
+\begin{DoxyCompactList}\small\item\em Constructeur, crée un objet \hyperlink{class_tag}{Tag} avec un nom mis en paramètre. \end{DoxyCompactList}\item 
+Q\+List$<$ Q\+String $>$ \hyperlink{class_tag_ae59f1dfea121805d056982fb4fc256a3}{get\+List\+Ways} ()
+\begin{DoxyCompactList}\small\item\em Getter de l\textquotesingle{}attribut List\+Ways. \end{DoxyCompactList}\item 
+Q\+String \hyperlink{class_tag_a0aa1b1560628e5f2ba0ac2782fe1f6a2}{get\+Name} ()
+\begin{DoxyCompactList}\small\item\em Getter de l\textquotesingle{}attribut Name. \end{DoxyCompactList}\item 
+void \hyperlink{class_tag_a6e01670a53e191a0aa8dbd19e553ae17}{Add\+Way} (Q\+String way, bool write)
+\begin{DoxyCompactList}\small\item\em procédure permettant d\textquotesingle{}ajouter une association(chemin) dans la List\+Ways et avec une ecriture dans le fichier \end{DoxyCompactList}\item 
+bool \hyperlink{class_tag_aef29fdee7946c77e1458344b6f5caae0}{is} (Q\+String name)
+\begin{DoxyCompactList}\small\item\em fonction retournant le bool si le tag possède le même nom \end{DoxyCompactList}\item 
+void \hyperlink{class_tag_a78f2b199c0dfddf91155c2c310d7b9b7}{initialiser\+Tag\+Files} ()\hypertarget{class_tag_a78f2b199c0dfddf91155c2c310d7b9b7}{}\label{class_tag_a78f2b199c0dfddf91155c2c310d7b9b7}
+
+\begin{DoxyCompactList}\small\item\em procédure permettant d\textquotesingle{}initialiser List\+Ways avec son fichier de config \end{DoxyCompactList}\item 
+bool \hyperlink{class_tag_afc82c9681eb14d892879ddab2b4811c4}{tag\+Possedant} (Q\+String way)
+\begin{DoxyCompactList}\small\item\em fonction retournant le bool si le tag possède cette association (chemin) \end{DoxyCompactList}\item 
+void \hyperlink{class_tag_acc722c521a916ac500abd9dc7d887413}{sup\+Way} (Q\+String way)
+\begin{DoxyCompactList}\small\item\em procédure permettant de supprimer une association(chemin) \end{DoxyCompactList}\item 
+\hyperlink{class_tag_aa582ff83996a96e1c7e0fabe9350e166}{$\sim$\+Tag} ()\hypertarget{class_tag_aa582ff83996a96e1c7e0fabe9350e166}{}\label{class_tag_aa582ff83996a96e1c7e0fabe9350e166}
+
+\begin{DoxyCompactList}\small\item\em Destructeur de \hyperlink{class_tag}{Tag}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Classe permettant de représenter un tag (chaque tag possède un nom et une liste de chemin qui lui ont été associé) 
+
+\subsection{Documentation des constructeurs et destructeur}
+\index{Tag@{Tag}!Tag@{Tag}}
+\index{Tag@{Tag}!Tag@{Tag}}
+\subsubsection[{\texorpdfstring{Tag(\+Q\+String name)}{Tag(QString name)}}]{\setlength{\rightskip}{0pt plus 5cm}Tag\+::\+Tag (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{name}
+\end{DoxyParamCaption}
+)}\hypertarget{class_tag_a1dc354cd81ef646b6d1a88f8d792acab}{}\label{class_tag_a1dc354cd81ef646b6d1a88f8d792acab}
+
+
+Constructeur, crée un objet \hyperlink{class_tag}{Tag} avec un nom mis en paramètre. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em Q\+String,name} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Documentation des fonctions membres}
+\index{Tag@{Tag}!Add\+Way@{Add\+Way}}
+\index{Add\+Way@{Add\+Way}!Tag@{Tag}}
+\subsubsection[{\texorpdfstring{Add\+Way(\+Q\+String way, bool write)}{AddWay(QString way, bool write)}}]{\setlength{\rightskip}{0pt plus 5cm}void Tag\+::\+Add\+Way (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{way, }
+\item[{bool}]{write}
+\end{DoxyParamCaption}
+)}\hypertarget{class_tag_a6e01670a53e191a0aa8dbd19e553ae17}{}\label{class_tag_a6e01670a53e191a0aa8dbd19e553ae17}
+
+
+procédure permettant d\textquotesingle{}ajouter une association(chemin) dans la List\+Ways et avec une ecriture dans le fichier 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em Q\+String} & way, bool write \\
+\hline
+\end{DoxyParams}
+\index{Tag@{Tag}!get\+List\+Ways@{get\+List\+Ways}}
+\index{get\+List\+Ways@{get\+List\+Ways}!Tag@{Tag}}
+\subsubsection[{\texorpdfstring{get\+List\+Ways()}{getListWays()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+List$<$ Q\+String $>$ Tag\+::get\+List\+Ways (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_tag_ae59f1dfea121805d056982fb4fc256a3}{}\label{class_tag_ae59f1dfea121805d056982fb4fc256a3}
+
+
+Getter de l\textquotesingle{}attribut List\+Ways. 
+
+\begin{DoxyReturn}{Renvoie}
+attribut List\+Ways 
+\end{DoxyReturn}
+\index{Tag@{Tag}!get\+Name@{get\+Name}}
+\index{get\+Name@{get\+Name}!Tag@{Tag}}
+\subsubsection[{\texorpdfstring{get\+Name()}{getName()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String Tag\+::get\+Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_tag_a0aa1b1560628e5f2ba0ac2782fe1f6a2}{}\label{class_tag_a0aa1b1560628e5f2ba0ac2782fe1f6a2}
+
+
+Getter de l\textquotesingle{}attribut Name. 
+
+\begin{DoxyReturn}{Renvoie}
+attribut Name 
+\end{DoxyReturn}
+\index{Tag@{Tag}!is@{is}}
+\index{is@{is}!Tag@{Tag}}
+\subsubsection[{\texorpdfstring{is(\+Q\+String name)}{is(QString name)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Tag\+::is (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{name}
+\end{DoxyParamCaption}
+)}\hypertarget{class_tag_aef29fdee7946c77e1458344b6f5caae0}{}\label{class_tag_aef29fdee7946c77e1458344b6f5caae0}
+
+
+fonction retournant le bool si le tag possède le même nom 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em Q\+String} & name \\
+\hline
+\end{DoxyParams}
+\index{Tag@{Tag}!sup\+Way@{sup\+Way}}
+\index{sup\+Way@{sup\+Way}!Tag@{Tag}}
+\subsubsection[{\texorpdfstring{sup\+Way(\+Q\+String way)}{supWay(QString way)}}]{\setlength{\rightskip}{0pt plus 5cm}void Tag\+::sup\+Way (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{way}
+\end{DoxyParamCaption}
+)}\hypertarget{class_tag_acc722c521a916ac500abd9dc7d887413}{}\label{class_tag_acc722c521a916ac500abd9dc7d887413}
+
+
+procédure permettant de supprimer une association(chemin) 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em Q\+String} & way \\
+\hline
+\end{DoxyParams}
+\index{Tag@{Tag}!tag\+Possedant@{tag\+Possedant}}
+\index{tag\+Possedant@{tag\+Possedant}!Tag@{Tag}}
+\subsubsection[{\texorpdfstring{tag\+Possedant(\+Q\+String way)}{tagPossedant(QString way)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Tag\+::tag\+Possedant (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{way}
+\end{DoxyParamCaption}
+)}\hypertarget{class_tag_afc82c9681eb14d892879ddab2b4811c4}{}\label{class_tag_afc82c9681eb14d892879ddab2b4811c4}
+
+
+fonction retournant le bool si le tag possède cette association (chemin) 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em Q\+String} & way \\
+\hline
+\end{DoxyParams}
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+Headers/\hyperlink{_tag_8h}{Tag.\+h}\item 
+Sources/Tag.\+cpp\end{DoxyCompactItemize}

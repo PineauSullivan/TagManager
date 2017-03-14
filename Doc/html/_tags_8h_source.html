@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>TagManager:  Fichier source de Headers/Tags.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TagManager
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&#160;associées</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_692516b589a32b3bfce781ca9f6d1534.html">Headers</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Tags.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_tags_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#ifndef TAGS</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define TAGS</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;QString&gt;</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_tag_8h.html">Headers/Tag.h</a>&gt;</span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_q_widget_o_8h.html">Headers/QWidgetO.h</a>&gt;</span></div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;QFile&gt;</span></div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;QTextStream&gt;</span></div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;QCoreApplication&gt;</span></div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div><div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="class_tags.html">   26</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_tags.html">Tags</a></div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">private</span> :</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        QList&lt;Tag*&gt; ListTags;   <span class="comment">// attribut : Liste de pointeur de Tag</span></div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <a class="code" href="class_q_widget_o.html">QWidgetO</a>* <a class="code" href="class_tab_recherche.html">TabRecherche</a>; <span class="comment">// attribut : pointeur vers un QWidgetO (TabRecherche, mode de recherche)</span></div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <a class="code" href="class_q_widget_o.html">QWidgetO</a>* <a class="code" href="class_tab_edition.html">TabEdition</a>;   <span class="comment">// attribut : pointeur vers un QWidgetO (TabEdition, mode de recherche)</span></div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">public</span> :</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <a class="code" href="class_tags.html#a8d3045112662e0ace4b8bafb5a3e8f57">Tags</a>();</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <a class="code" href="class_q_widget_o.html">QWidgetO</a>* <a class="code" href="class_tags.html#ac7b0c253bbea81ebec2f17fd628b67e2">getTabRecherche</a>();</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        </div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <a class="code" href="class_q_widget_o.html">QWidgetO</a>* <a class="code" href="class_tags.html#aea3b5ed347a1eb66f41fc84d0d174d45">getTabEdition</a>();</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        </div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        QList&lt;Tag*&gt; <a class="code" href="class_tags.html#aab1b32558374b97adde959c3822d804d">getListTags</a>();</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <a class="code" href="class_tag.html">Tag</a>* <a class="code" href="class_tags.html#a8068c802b3da7261d9b271fa566d6de7">getTag</a>(QString nameTag);</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        </div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_tags.html#a57abf29a5ab4a089a7d8e6b55c1f508f">setQWidgetRecherche</a>(<a class="code" href="class_q_widget_o.html">QWidgetO</a>* TabRecherche);</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_tags.html#a62d0a0430258dc94fb6aa41bd5558b19">setQWidgetEdition</a>(<a class="code" href="class_q_widget_o.html">QWidgetO</a>* TabEdition);</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_tags.html#a72f68c1babf29e2c5f1e49356dbe71ab">supprimerTag</a>(<a class="code" href="class_tag.html">Tag</a>* tag);</div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_tags.html#ac595bd17429b50a9a4b35f993670b44b">initialiserTagsFiles</a>();</div><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        </div><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_tags.html#a837588d5b1fa060ecc1c4c37cedbbe16">add_tag</a>(QString name, <span class="keywordtype">bool</span> write);</div><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;       </div><div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <a class="code" href="class_tags.html#a8fbc021de7f063e0a8f0dc79a8894083">~Tags</a>();</div><div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;};</div><div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">#endif // TAGS</span></div><div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div><div class="ttc" id="class_tags_html_a62d0a0430258dc94fb6aa41bd5558b19"><div class="ttname"><a href="class_tags.html#a62d0a0430258dc94fb6aa41bd5558b19">Tags::setQWidgetEdition</a></div><div class="ttdeci">void setQWidgetEdition(QWidgetO *TabEdition)</div><div class="ttdoc">Setter de l&amp;#39;attribut TabEdition. </div><div class="ttdef"><b>Definition:</b> Tags.cpp:29</div></div>
+<div class="ttc" id="class_tags_html_a57abf29a5ab4a089a7d8e6b55c1f508f"><div class="ttname"><a href="class_tags.html#a57abf29a5ab4a089a7d8e6b55c1f508f">Tags::setQWidgetRecherche</a></div><div class="ttdeci">void setQWidgetRecherche(QWidgetO *TabRecherche)</div><div class="ttdoc">Setter de l&amp;#39;attribut TabRecherche. </div><div class="ttdef"><b>Definition:</b> Tags.cpp:24</div></div>
+<div class="ttc" id="class_tags_html_a8d3045112662e0ace4b8bafb5a3e8f57"><div class="ttname"><a href="class_tags.html#a8d3045112662e0ace4b8bafb5a3e8f57">Tags::Tags</a></div><div class="ttdeci">Tags()</div><div class="ttdoc">Constructeur, crée un objet Tags. </div><div class="ttdef"><b>Definition:</b> Tags.cpp:13</div></div>
+<div class="ttc" id="class_tags_html_aab1b32558374b97adde959c3822d804d"><div class="ttname"><a href="class_tags.html#aab1b32558374b97adde959c3822d804d">Tags::getListTags</a></div><div class="ttdeci">QList&lt; Tag * &gt; getListTags()</div><div class="ttdoc">Getter de l&amp;#39;attribut ListTags. </div><div class="ttdef"><b>Definition:</b> Tags.cpp:19</div></div>
+<div class="ttc" id="class_tags_html_ac7b0c253bbea81ebec2f17fd628b67e2"><div class="ttname"><a href="class_tags.html#ac7b0c253bbea81ebec2f17fd628b67e2">Tags::getTabRecherche</a></div><div class="ttdeci">QWidgetO * getTabRecherche()</div><div class="ttdoc">Getter de l&amp;#39;attribut TabRecherche. </div><div class="ttdef"><b>Definition:</b> Tags.cpp:34</div></div>
+<div class="ttc" id="class_tags_html_a72f68c1babf29e2c5f1e49356dbe71ab"><div class="ttname"><a href="class_tags.html#a72f68c1babf29e2c5f1e49356dbe71ab">Tags::supprimerTag</a></div><div class="ttdeci">void supprimerTag(Tag *tag)</div><div class="ttdoc">Procédure permettant de supprimer un tag dans Tags et de modifier/supprimer les fichiers de configs r...</div><div class="ttdef"><b>Definition:</b> Tags.cpp:76</div></div>
+<div class="ttc" id="class_tags_html_ac595bd17429b50a9a4b35f993670b44b"><div class="ttname"><a href="class_tags.html#ac595bd17429b50a9a4b35f993670b44b">Tags::initialiserTagsFiles</a></div><div class="ttdeci">void initialiserTagsFiles()</div><div class="ttdoc">procédure permettant d&amp;#39;initialiser tous les tags avec le fichier de config </div><div class="ttdef"><b>Definition:</b> Tags.cpp:95</div></div>
+<div class="ttc" id="_tag_8h_html"><div class="ttname"><a href="_tag_8h.html">Tag.h</a></div><div class="ttdoc">Définition d&amp;#39;une classe de Tab. </div></div>
+<div class="ttc" id="class_tags_html_a8fbc021de7f063e0a8f0dc79a8894083"><div class="ttname"><a href="class_tags.html#a8fbc021de7f063e0a8f0dc79a8894083">Tags::~Tags</a></div><div class="ttdeci">~Tags()</div><div class="ttdoc">Destructeur de Tags. </div><div class="ttdef"><b>Definition:</b> Tags.cpp:112</div></div>
+<div class="ttc" id="class_q_widget_o_html"><div class="ttname"><a href="class_q_widget_o.html">QWidgetO</a></div><div class="ttdoc">Classe permettant de redéfinir la classe QWidget. </div><div class="ttdef"><b>Definition:</b> QWidgetO.h:21</div></div>
+<div class="ttc" id="class_tags_html_aea3b5ed347a1eb66f41fc84d0d174d45"><div class="ttname"><a href="class_tags.html#aea3b5ed347a1eb66f41fc84d0d174d45">Tags::getTabEdition</a></div><div class="ttdeci">QWidgetO * getTabEdition()</div><div class="ttdoc">Getter de l&amp;#39;attribut TabEdition. </div><div class="ttdef"><b>Definition:</b> Tags.cpp:39</div></div>
+<div class="ttc" id="class_tab_edition_html"><div class="ttname"><a href="class_tab_edition.html">TabEdition</a></div><div class="ttdoc">Classe permettant de définir la classe TabEdition. </div><div class="ttdef"><b>Definition:</b> TabEdition.h:40</div></div>
+<div class="ttc" id="class_tag_html"><div class="ttname"><a href="class_tag.html">Tag</a></div><div class="ttdoc">Classe permettant de représenter un tag (chaque tag possède un nom et une liste de chemin qui lui ont...</div><div class="ttdef"><b>Definition:</b> Tag.h:25</div></div>
+<div class="ttc" id="class_tab_recherche_html"><div class="ttname"><a href="class_tab_recherche.html">TabRecherche</a></div><div class="ttdoc">Classe permettant de définir la classe TabRecherche. </div><div class="ttdef"><b>Definition:</b> TabRecherche.h:38</div></div>
+<div class="ttc" id="class_tags_html"><div class="ttname"><a href="class_tags.html">Tags</a></div><div class="ttdoc">Classe permettant de lister les différents tags et possède un pointeur vers les deux modes...</div><div class="ttdef"><b>Definition:</b> Tags.h:26</div></div>
+<div class="ttc" id="class_tags_html_a837588d5b1fa060ecc1c4c37cedbbe16"><div class="ttname"><a href="class_tags.html#a837588d5b1fa060ecc1c4c37cedbbe16">Tags::add_tag</a></div><div class="ttdeci">void add_tag(QString name, bool write)</div><div class="ttdoc">Procédure permettant d&amp;#39;ajouter un tag dans Tags et de modifier/ajouter les fichiers de configs respec...</div><div class="ttdef"><b>Definition:</b> Tags.cpp:55</div></div>
+<div class="ttc" id="_q_widget_o_8h_html"><div class="ttname"><a href="_q_widget_o_8h.html">QWidgetO.h</a></div><div class="ttdoc">Définition d&amp;#39;une classe de QWidgetO. </div></div>
+<div class="ttc" id="class_tags_html_a8068c802b3da7261d9b271fa566d6de7"><div class="ttname"><a href="class_tags.html#a8068c802b3da7261d9b271fa566d6de7">Tags::getTag</a></div><div class="ttdeci">Tag * getTag(QString nameTag)</div><div class="ttdoc">Getter d&amp;#39;un pointeur de tag possèdant le même nom que celui mis en paramètre. </div><div class="ttdef"><b>Definition:</b> Tags.cpp:44</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>
