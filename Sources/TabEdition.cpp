@@ -1,18 +1,26 @@
+/**
+* @file TabEdition.cpp
+* @author G. Killian, P. Sullivan
+* @since 14/03/2017
+* @brief implémentation des méthodes de la classe TabEdition
+*
+**/
+
+//****************************************************************************************************
 #include "Headers/TabEdition.h"
 
-
-
+//****************************************************************************************************
 TabEdition::TabEdition(Tags *tags,QWidget* parent) : QWidgetO(parent)
 {
 
-    setMouseTracking(true);
-    this->model = new QDirModel(this);
+    setMouseTracking(true); //Lance le tracking de la souris
 
-//    this->model->setRootPath("/");
+    this->model = new QDirModel(this); //initialise le model
+    QModelIndex idx = this->model->index(QDir::homePath());
 
+    //initialisation de la view
     this->view = new QTreeView(this);
     this->view->setModel(this->model);
-    QModelIndex idx = this->model->index(QDir::homePath());
     this->view->setRootIndex(idx);
     this->view->setColumnWidth(0,700);
     this->view->setColumnWidth(2,200);
@@ -21,62 +29,70 @@ TabEdition::TabEdition(Tags *tags,QWidget* parent) : QWidgetO(parent)
     this->view->show();
     this->view->setSelectionMode(QAbstractItemView::ExtendedSelection);
     this->view->setVisible(true);
-//    connect(this->view,SIGNAL(doubleClicked(QModelIndex)),this, SLOT(selected()));
-    connect(this->view,SIGNAL(clicked(QModelIndex)),this, SLOT(selectedAuto()));
 
-
-    this->resultLabelTag=new QLabel(this);
-    this->resultLabelTag->setText("");
-    this->resultLabelTag->show();
-
-
-    this->resultLabelWay=new QLabel(this);
-    this->resultLabelWay->setText("");
-    this->resultLabelWay->show();
-
+    //initialiser tags
     this->tags=tags;
+
+    //initialise la liste des tags
     foreach(Tag* tag, tags->getListTags()){
         this->buttonsList.append(new QPushButtonPlus(tag->getName(),this));
     }
+
+    //initialise le bouton créerTag
     this->creerTag = new QPushButton("+ Créer tag",this);
-    connect(this->creerTag, SIGNAL(clicked()), this, SLOT(creationTag()));
+
+    //Set le style du boutton créerTag (vert clair)
     Style::setStyle(this->creerTag,5);
 
+    //initialise le bouton associerTag
     this->associerTag = new QPushButton("Associer >",this);
-    connect(this->associerTag, SIGNAL(clicked()), this, SLOT(association()));
+
+
+    //set le style du boutton associerTag (vert clair)
     Style::setStyle(this->associerTag,5);
 
+    //initialiser le menuTag
     this->menuTag = new QMenu(this);
     this->menuTag->addAction("Supprimer");
-    connect(this->menuTag, SIGNAL(triggered(QAction*)), this, SLOT(supTag()));
     this->menuTag->setVisible(false);
 
-    initialisationButtons();
-    setLabels();
+    //connect la view a chaque click au slot selectedAuto
+    connect(this->view,SIGNAL(clicked(QModelIndex)),this, SLOT(selectedAuto()));
 
+    //connect le boutton créerTag au slot créationTag
+    connect(this->creerTag, SIGNAL(clicked()), this, SLOT(creationTag()));
+
+    //connect le boutton associerTag au slot association()
+    connect(this->associerTag, SIGNAL(clicked()), this, SLOT(association()));
+
+    //connect le menuTag au slot supTag
+    connect(this->menuTag, SIGNAL(triggered(QAction*)), this, SLOT(supTag()));
+
+    //initialisation de tout les bouttons (position/dimension)
+    initialisationButtons();
 }
 
+//****************************************************************************************************
 void TabEdition::creationTag()
 {
-    bool ok = false;
-    QString tag = QInputDialog::getText(this, "Creation Tag", "Quel est le tag que vous voulez ajouter ?", QLineEdit::Normal, QString(), &ok);
+    bool choix = false;
+    QString tagName = QInputDialog::getText(this, "Creation Tag", "Quel est le tag que vous voulez ajouter ?", QLineEdit::Normal, QString(), &choix);
 
     bool contain = false;
-    foreach(Tag* ta, this->tags->getListTags()){
-        if(ta->getName()==tag){
+    foreach(Tag* tag, this->tags->getListTags()){
+        if(tag->getName()==tagName){
             contain = true;
         }
     }
-
-    if (ok && !tag.isEmpty() && !contain)
+    if (choix && !tagName.isEmpty() && !contain)
     {
-        if(tag.size()<11){
-            QPushButtonPlus* button = new QPushButtonPlus(tag,this);
+        if(tagName.size()<11){
+            QPushButtonPlus* button = new QPushButtonPlus(tagName,this);
             Style::setStyle(button,1);
             this->buttonsList.append(button);
-            this->tags->add_tag(tag, true);
+            this->tags->add_tag(tagName, true);
             initialisationButtonsList();
-            QMessageBox::information(this, "Tag", "Le " + tag + " a bien été ajouté.");
+            QMessageBox::information(this, "Tag", "Le " + tagName + " a bien été ajouté.");
             this->tags->getTabRecherche()->initialisationButtons();
 
         }else{
@@ -89,6 +105,7 @@ void TabEdition::creationTag()
     }
 }
 
+//****************************************************************************************************
 void TabEdition::tagClicked()
 {
     QPushButton *button = (QPushButton *)sender();
@@ -96,16 +113,14 @@ void TabEdition::tagClicked()
         button->setFlat(false);
         Style::setStyle(button,1);
         this->tagsSelected.removeAll(this->tags->getTag(button->text()));
-//        QMessageBox::information(this,"Tag désélectionné", "Tag désélectionné "+button->text());
     }else{
         button->setFlat(true);
         Style::setStyle(button,4);
         this->tagsSelected.append(this->tags->getTag(button->text()));
-//        QMessageBox::information(this,"Tag sélectionné", "Tag sélectionné "+button->text());
     }
-    setLabels();
 }
 
+//****************************************************************************************************
 void TabEdition::association()
 {
     if(!this->tagsSelected.isEmpty() && !this->waysSelected.isEmpty()){
@@ -137,7 +152,6 @@ void TabEdition::association()
         QMessageBox::information(this,"Association", "Association sélectionné "+text);
         initialisationButtons();
         clearSelected();
-        setLabels();
         this->tags->getTabRecherche()->initialisationButtons();
     }else{
         if(this->waysSelected.isEmpty()){
@@ -148,108 +162,64 @@ void TabEdition::association()
     }
 }
 
-QString TabEdition::toStringTag(){
-//    QString result = "Tag(s) sélectionné(s) : ";
-//    int i =1;
-//    foreach(Tag *tag, this->tagsSelected){
-//        if(this->tagsSelected.size()==i){
-//            result = result + tag->getName()+".";
-//        }else{
-//            result = result + tag->getName()+", ";
-//        }
-//        ++i;
-//    }
 
-    QString result = "Nombre de tag(s) sélectionné(s) : "+QString::number(this->tagsSelected.size())+".";
-
-
-
-    return result;
-}
-
-QString TabEdition::toStringWay(){
-//    QString result = "Fichier(s) et/ou dossier(s) sélectionné(s) : ";
-//    int i = 1;
-//    foreach(QString way, this->waysSelected){
-//        if(this->waysSelected.size()==i){
-//            result = result + way+".";
-//        }else{
-//            result = result + way+", ";
-
-//        }
-//        ++i;
-//    }
-
-
-    QString result = "Nombre de fichier(s)/dossier(s) sélectionné(s) : "+QString::number(this->waysSelected.size())+".";
-    return result;
-}
-
-//fonction permettant d'afficher les labels
-void TabEdition::setLabels(){
-//    this->resultLabelTag->setText(toStringTag());
-//    this->resultLabelWay->setText(toStringWay());
-}
-
-
+//****************************************************************************************************
 void TabEdition::initialisationButtons(){
+    
+
     int i=0;
-    this->view->setGeometry(QRect(QPoint(0, 0),
-                              QSize(900, 700)));
-
-    this->resultLabelTag->setGeometry(QRect(QPoint(0, 605),
-                                    QSize(900, 50)));
-
-    this->resultLabelWay->setGeometry(QRect(QPoint(0, 650),
-                                    QSize(900, 50)));
-
     foreach(QPushButtonPlus* button, this->buttonsList){
         button->disconnect();
         button->setFlat(false);
-        button->setGeometry(QRect(QPoint((i%3)*110+905, (i/3)*55),
-                                                              QSize(100, 50)));
+        button->setGeometry(QRect(QPoint((i%3)*110+905, (i/3)*55),QSize(100, 50)));
+
+        //connect le clic gauche avec le slot tagClicked
         connect(button, SIGNAL(leftClicked()), this, SLOT(tagClicked()));
+
+        //connect le clic droit avec le slot menuTagClicked
         connect(button, SIGNAL(rightClicked()), this, SLOT(menuTagClicked()));
+
+        //set le style du boutton (jaune)
         Style::setStyle(button,1);
         button->setVisible(true);
         ++i;
     }
 
-    this->creerTag->setGeometry(QRect(QPoint(((i)%3)*110+905, ((i)/3)*55),
-                                                          QSize(100, 50)));
-    this->associerTag->setGeometry(QRect(QPoint(((i)%3)+905, 650),
-                                         QSize(325, 50)));
+    this->view->setGeometry(QRect(QPoint(0, 0),QSize(900, 700)));
+
+    this->creerTag->setGeometry(QRect(QPoint(((i)%3)*110+905, ((i)/3)*55),QSize(100, 50)));
+
+    this->associerTag->setGeometry(QRect(QPoint(((i)%3)+905, 650),QSize(325, 50)));
+
     clearSelected();
 }
-void TabEdition::menuTagClicked(){
-    QPushButtonPlus *button = (QPushButtonPlus *)sender();
 
-//    QMessageBox::critical(this,"Association", "pos x "+QString::number(button->getPos().x())+" pos y "+QString::number(button->getPos().y()));
+//****************************************************************************************************
+void TabEdition::menuTagClicked(){
+    //récupération du boutton cliqué
+    QPushButtonPlus *button = (QPushButtonPlus *)sender();
 
     if(this->menuTag->isVisible()){
         this->tagEnSuppression = NULL;
         this->menuTag->setVisible(false);
     }else{
         this->tagEnSuppression = this->tags->getTag(button->text());
-        this->menuTag->setGeometry(QRect(QPoint(button->getPos().x()+button->x()+50,button->getPos().y()+button->y()+53),
-                               QSize(112, 23)));
+        this->menuTag->setGeometry(QRect(QPoint(button->getPos().x()+button->x()+50,button->getPos().y()+button->y()+53),QSize(112, 23)));
         this->menuTag->raise();
         this->menuTag->setVisible(true);
     }
 }
 
-
+//****************************************************************************************************
 void TabEdition::supTag(){
     QString nb = QString::number(this->tagEnSuppression->getListWays().size());
     int reponse = QMessageBox::question(this, "Suppression de Tag", "Etês vous sur de vouloir supprimer le Tag : "+this->tagEnSuppression->getName()+" qui possède "+nb+" fichier(s) associé(s) ?", QMessageBox ::Yes | QMessageBox::No);
-
     if (reponse == QMessageBox::Yes)
     {
         QString nomtag= this->tagEnSuppression->getName();
         this->tags->supprimerTag(this->tagEnSuppression);
         this->sup(nomtag);
         this->initialisationButtons();
-        this->setLabels();
         this->tags->getTabRecherche()->initialisationButtons();
         this->menuTag->setVisible(false);
         QMessageBox::information(this, "Suppression de Tag", "Tag : "+nomtag+" a bien été supprimé.");
@@ -258,47 +228,29 @@ void TabEdition::supTag(){
     this->menuTag->setVisible(false);
 
 }
+
+//****************************************************************************************************
 void TabEdition::initialisationButtonsList(){
     int i=0;
-
     foreach(QPushButtonPlus* button, this->buttonsList){
         button->disconnect();
-        button->setGeometry(QRect(QPoint((i%3)*110+905, (i/3)*55),
-                                                              QSize(100, 50)));
+        button->setGeometry(QRect(QPoint((i%3)*110+905, (i/3)*55),QSize(100, 50)));
         connect(button, SIGNAL(leftClicked()), this, SLOT(tagClicked()));
         connect(button, SIGNAL(rightClicked()), this, SLOT(menuTagClicked()));
         button->setVisible(true);
         ++i;
     }
-
-    this->creerTag->setGeometry(QRect(QPoint(((i)%3)*110+905, ((i)/3)*55),
-                                                          QSize(100, 50)));
-    this->associerTag->setGeometry(QRect(QPoint(((i)%3)+905, 625),
-                                                          QSize(325, 50)));
+    this->creerTag->setGeometry(QRect(QPoint(((i)%3)*110+905, ((i)/3)*55),QSize(100, 50)));
+    this->associerTag->setGeometry(QRect(QPoint(((i)%3)+905, 625),QSize(325, 50)));
 }
 
+//****************************************************************************************************
 void TabEdition::clearSelected(){
    this->tagsSelected.clear();
     this->waysSelected.clear();
 }
 
-
-//A Enlever
-void TabEdition::selected(){
-    QModelIndex index = this->view->currentIndex();
-    QFileInfo fileInfo = this->model->fileInfo(index);
-    QString chemin = fileInfo.absoluteFilePath();
-    if(this->waysSelected.contains(chemin)){
-        this->waysSelected.removeAll(chemin);
-        QMessageBox::information(this,"Fichier désélectionné", "Fichier désélectionné "+chemin);
-    }else{
-        this->waysSelected.append(chemin);
-        QMessageBox::information(this,"Fichier sélectionné", "Fichier sélectionné "+chemin);
-    }
-
-    setLabels();
-}
-
+//****************************************************************************************************
 void TabEdition::selectedAuto(){
     this->waysSelected.clear();
     foreach(QModelIndex index, this->view->selectionModel()->selectedIndexes()){
@@ -308,9 +260,9 @@ void TabEdition::selectedAuto(){
             this->waysSelected.append(chemin);
         }
     }
-    setLabels();
 }
 
+//****************************************************************************************************
 void TabEdition::sup(QString name){
     int pos = 0;
     for(int i =0; i<this->buttonsList.size();++i){
@@ -326,6 +278,7 @@ void TabEdition::sup(QString name){
     this->initialisationButtons();
 }
 
+//****************************************************************************************************
 void TabEdition::messageAide(){
     QMessageBox::information(this,"Aide Edition", "Comment créer un tag ?<br/>"
                                           "Cliquer sur 'créer tag'.<br/><br/>"
@@ -335,6 +288,7 @@ void TabEdition::messageAide(){
                                           "Utiliser le clic droit sur le tag en question.<br/>");
 }
 
+//****************************************************************************************************
 TabEdition::~TabEdition()
 {
 }

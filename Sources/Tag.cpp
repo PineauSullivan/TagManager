@@ -1,15 +1,27 @@
+/**
+* @file Tab.cpp
+* @author G. Killian, P. Sullivan
+* @since 14/03/2017
+* @brief implémentation des méthodes de la classe Tab
+*
+**/
+
+//****************************************************************************************************
 #include "Headers/Tag.h"
 
+//****************************************************************************************************
 Tag::Tag(QString name)
 {
     this->Name = name;
     initialiserTagFiles();
 }
 
+//****************************************************************************************************
 QList<QString> Tag::getListWays(){
     return this->ListWays;
 }
 
+//****************************************************************************************************
 void Tag::AddWay(QString way, bool write){
     if(!this->ListWays.contains(way) && !this->ListWays.contains(way+'\n')){
         QFile file("Configs/ConfigTag"+this->Name+".txt");
@@ -22,14 +34,17 @@ void Tag::AddWay(QString way, bool write){
     }
 }
 
+//****************************************************************************************************
 bool Tag::is(QString name){
     return (this->Name==name);
 }
 
+//****************************************************************************************************
 QString Tag::getName(){
     return this->Name;
 }
 
+//****************************************************************************************************
 void Tag::initialiserTagFiles(){
     QFile inputFile("Configs/ConfigTag"+this->Name+".txt");
     if (inputFile.open(QIODevice::ReadOnly))
@@ -46,6 +61,7 @@ void Tag::initialiserTagFiles(){
     }
 }
 
+//****************************************************************************************************
 bool Tag::tagPossedant(QString way){
     foreach(QString wayb, this->ListWays){
         if(wayb==way)
@@ -54,6 +70,7 @@ bool Tag::tagPossedant(QString way){
     return false;
 }
 
+//****************************************************************************************************
 void Tag::supWay(QString way){
     this->ListWays.removeAll(way);
     QFile file("Configs/ConfigTag"+this->getName()+".txt");
@@ -68,7 +85,7 @@ void Tag::supWay(QString way){
     }
 }
 
-
+//****************************************************************************************************
 Tag::~Tag()
 {
 }

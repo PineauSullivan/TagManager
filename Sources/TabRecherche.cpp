@@ -1,64 +1,85 @@
+/**
+* @file TabRecherche.cpp
+* @author G. Killian, P. Sullivan
+* @since 14/03/2017
+* @brief implémentation des méthodes de la classe QPushButtonPlus
+*
+**/
+
+//****************************************************************************************************
 #include "Headers/TabRecherche.h"
 
-
-
+//****************************************************************************************************
 TabRecherche::TabRecherche(Tags *tags, QWidget* parent) : QWidgetO(parent)
 {
+    //initialisation des tags
     this->tags=tags;
-
-
     this->tagsSelected.clear();
 
+    //initialisation de la view
     this->view = new MyView(this);
     this->view->show();
     this->view->setVisible(true);
+    this->view->setGeometry(QRect(QPoint(0, 200),QSize(1300,500)));
 
-    this->view->setGeometry(QRect(QPoint(0, 200),
-                              QSize(1300,500)));
-    connect(this->view,SIGNAL(doubleClicked()), this, SLOT(lancer()));
-    connect(this->view,SIGNAL(rightClicked()), this, SLOT(menuWayClicked()));
-
+    //initialisation du menuWay (pour la view)
     this->menuWay = new QMenu(this);
-    QAction *menuAction;
-
-    menuAction = this->menuWay->addAction("lancer");
-    connect(menuAction, SIGNAL(triggered()), this, SLOT(lancer()));
-
-    menuAction = this->menuWay->addAction("supprimer");
-    connect(menuAction, SIGNAL(triggered()), this, SLOT(supWay()));
+    
+    //initialisation du menuLancer
+    QAction *menuLancer;
+    menuLancer = this->menuWay->addAction("lancer");
+    
+    //initialisation du menuSup
+    QAction * menuSup;
+    menuSup = this->menuWay->addAction("supprimer");
 
     this->menuWay->setVisible(false);
 
+    //initialisation du menu Tag
     this->menuTag = new QMenu(this);
     this->menuTag->addAction("Supprimer");
-    connect(this->menuTag, SIGNAL(triggered(QAction*)), this, SLOT(supTag()));
     this->menuTag->setVisible(false);
 
+    //initialisation de la checkbox ET
     this->modeRechercheET = new QCheckBox("Recherche ET",this);
-    this->modeRechercheET->setGeometry(QRect(QPoint((9)*110, 3*55+5),
-                                                         QSize(130, 25)));
-
-    connect(this->modeRechercheET,SIGNAL(clicked(bool)), this, SLOT(checkboxETChanged()));
+    this->modeRechercheET->setGeometry(QRect(QPoint((9)*110, 3*55+5),QSize(130, 25)));
     this->modeRechercheET->setVisible(true);
 
-
+    //initialisation de la checkbox OU
     this->modeRechercheOU = new QCheckBox("Recherche OU",this);
-    this->modeRechercheOU->setGeometry(QRect(QPoint((9)*110 + 135, 3*55+5),
-                                                         QSize(130, 25)));
-
-    connect(this->modeRechercheOU,SIGNAL(clicked(bool)), this, SLOT(checkboxOUChanged()));
+    this->modeRechercheOU->setGeometry(QRect(QPoint((9)*110 + 135, 3*55+5),QSize(130, 25)));
     this->modeRechercheOU->setChecked(true);
     this->modeRechercheOU->setVisible(true);
 
+    //connect double clic de la view vers le slot lancer
+    connect(this->view,SIGNAL(doubleClicked()), this, SLOT(lancer()));
+
+    //connect clic droit de la view vers le slot menuWayClicked
+    connect(this->view,SIGNAL(rightClicked()), this, SLOT(menuWayClicked()));
+
+    //connect du menuLancer vers le slot Lancer 
+    connect(menuLancer, SIGNAL(triggered()), this, SLOT(lancer()));
+    
+    //connect du menuSup vers le slot supWay
+    connect(menuSup, SIGNAL(triggered()), this, SLOT(supWay()));
+    
+    //initialisation du menuTag vers le slot supTag
+    connect(this->menuTag, SIGNAL(triggered(QAction*)), this, SLOT(supTag()));
+    
+    //connect clic sur la checkbox ET vers checkboxETChanged
+    connect(this->modeRechercheET,SIGNAL(clicked(bool)), this, SLOT(checkboxETChanged()));
+
+    //connect clic sur la checkbox OU vers checkboxOUChanged
+    connect(this->modeRechercheOU,SIGNAL(clicked(bool)), this, SLOT(checkboxOUChanged()));
 
     initialisationButtons();
 
 }
 
+//****************************************************************************************************
 void TabRecherche::initialisationButtons(){
     this->tagsSelected.clear();
     this->view->setModel(NULL);
-
     foreach (QPushButton* button, this->buttonsList) {
         button->setVisible(false);
         button->disconnect();
@@ -72,16 +93,17 @@ void TabRecherche::initialisationButtons(){
             this->buttonsList.append(button);
             Style::setStyle(button, 1);
 
+            //connect un clic gauche du boutton vers le slot tagClicked()
             connect(button, SIGNAL(leftClicked()), this, SLOT(tagClicked()));
+
+            //connect un clic droit du boutton vers le slot menuTagClicked()
             connect(button, SIGNAL(rightClicked()), this, SLOT(menuTagClicked()));
             button->setVisible(true);
         }
     }
     int i = 0;
     foreach(QPushButton* button, this->buttonsList) {
-        button->setGeometry(QRect(QPoint((i%10)*110, (i/10)*55+5),
-                                                              QSize(100, 50)));
-
+        button->setGeometry(QRect(QPoint((i%10)*110, (i/10)*55+5),QSize(100, 50)));
         button->setVisible(true);
         ++i;
     }
@@ -89,8 +111,7 @@ void TabRecherche::initialisationButtons(){
         QPushButtonPlus* button = new QPushButtonPlus("Aucun fichier/dossier associé",this);
         this->buttonsList.append(button);
         Style::setStyle(button, 2);
-        button->setGeometry(QRect(QPoint((0%10)*110, (0/10)*55+5),
-                                                              QSize(220, 50)));
+        button->setGeometry(QRect(QPoint((0%10)*110, (0/10)*55+5),QSize(220, 50)));
         connect(button, SIGNAL(leftClicked()), this, SLOT(aucunTag()));
         button->setVisible(true);
     }
@@ -98,6 +119,7 @@ void TabRecherche::initialisationButtons(){
 
 }
 
+//****************************************************************************************************
 void TabRecherche::tagClicked(){
     QPushButton *button = (QPushButton *)sender();
     if(button->isFlat()){
@@ -117,10 +139,12 @@ void TabRecherche::tagClicked(){
     }
 }
 
+//****************************************************************************************************
 void TabRecherche::aucunTag(){
     QMessageBox::critical(this,"Aucun Tag Disponible","Vous avez aucun Fichier ou dossier qui est taggé actuellement ! Pour se faire, il vous suffit de passer en Mode Edition.");
 }
 
+//****************************************************************************************************
 void TabRecherche::recherche(){
     QList<QString> resultList;
     if(!this->tagsSelected.isEmpty()){
@@ -154,8 +178,6 @@ void TabRecherche::recherche(){
             this->model = new QStandardItemModel(this);
             this->model->setColumnCount(1);
             this->model->setRowCount(resultList.size());
-
-
             int nb_way=1;
             foreach(QString way, resultList){
                 this->model->setData(this->model->index(nb_way-1, 0), way);
@@ -174,6 +196,7 @@ void TabRecherche::recherche(){
     }
 }
 
+//****************************************************************************************************
 void TabRecherche::supTag(){
     QString nb = QString::number(this->tagEnSuppression->getListWays().size());
     int reponse = QMessageBox::question(this, "Suppression de Tag", "Etês vous sur de vouloir supprimer le Tag : "+this->tagEnSuppression->getName()+" qui possède "+nb+" fichier(s) associé(s) ?", QMessageBox ::Yes | QMessageBox::No);
@@ -193,7 +216,7 @@ void TabRecherche::supTag(){
 
 }
 
-
+//****************************************************************************************************
 void TabRecherche::menuTagClicked(){
     this->menuWay->setVisible(false);
 
@@ -204,13 +227,13 @@ void TabRecherche::menuTagClicked(){
         this->menuTag->setVisible(false);
     }else{
         this->tagEnSuppression = this->tags->getTag(button->text());
-        this->menuTag->setGeometry(QRect(QPoint(button->getPos().x()+button->x()+this->pos().x()+50,button->getPos().y()+button->y()+this->pos().y()+53),
-                               QSize(112, 23)));
+        this->menuTag->setGeometry(QRect(QPoint(button->getPos().x()+button->x()+this->pos().x()+50,button->getPos().y()+button->y()+this->pos().y()+53),QSize(112, 23)));
         this->menuTag->raise();
         this->menuTag->setVisible(true);
     }
 }
 
+//****************************************************************************************************
 void TabRecherche::menuWayClicked(){
     this->menuTag->setVisible(false);
     QModelIndex index = this->view->currentIndex();
@@ -220,14 +243,14 @@ void TabRecherche::menuWayClicked(){
     if(this->menuWay->isVisible()||this->tagsSelected.empty()){
         this->menuWay->setVisible(false);
     }else{
-        this->menuWay->setGeometry(QRect(QPoint(this->view->getPos().x()+this->view->x()+77,this->view->getPos().y()+this->view->y()+80),
-                                         QSize(112, 46)));
+        this->menuWay->setGeometry(QRect(QPoint(this->view->getPos().x()+this->view->x()+77,this->view->getPos().y()+this->view->y()+80),QSize(112, 46)));
         this->menuWay->raise();
         this->menuWay->setVisible(true);
     }
 
 }
 
+//****************************************************************************************************
 void TabRecherche::lancer(){
     this->menuWay->setVisible(false);
     QModelIndex index = this->view->currentIndex();
@@ -238,24 +261,23 @@ void TabRecherche::lancer(){
         QMessageBox::critical(this,"Erreur d'ouverture", "Il est impossible d'ouvrir le fichier/dossier : "+chemin+".");
     }
 }
-void TabRecherche::sup(QString name){
-    if(name == ""){
-    }else{
 
+//****************************************************************************************************
+void TabRecherche::sup(QString name){
+    if(name==""){
+        
     }
 }
 
+//****************************************************************************************************
 void TabRecherche::supWay(){
 
     this->menuWay->setVisible(false);
     QModelIndex index = this->view->currentIndex();
     QString chemin = index.data().toString();
-
-
     QMessageBox msgBox;
     msgBox.setText("Suppression d'associations.");
     msgBox.setInformativeText("Veuillez selectionner les différents tags que vous souhaitez désassocier de '"+chemin+"' : ");
-
     QList<QCheckBox*> list_check;
     foreach(Tag* tag, this->tags->getListTags()){
         if(tag->tagPossedant(chemin)){
@@ -287,6 +309,7 @@ void TabRecherche::supWay(){
     }
 }
 
+//****************************************************************************************************
 void TabRecherche::checkboxETChanged(){
     this->modeRechercheET->setChecked(true);
     this->modeRechercheOU->setChecked(false);
@@ -296,6 +319,7 @@ void TabRecherche::checkboxETChanged(){
     }
 }
 
+//****************************************************************************************************
 void TabRecherche::checkboxOUChanged(){
     this->modeRechercheET->setChecked(false);
     this->modeRechercheOU->setChecked(true);
@@ -305,6 +329,7 @@ void TabRecherche::checkboxOUChanged(){
     }
 }
 
+//****************************************************************************************************
 void TabRecherche::messageAide(){
     QMessageBox::information(this,"Aide Recherche", "Pourquoi je n'ai pas de tag ? <br/> "
                                           "Il faut créer au moins un tag puis l'associer à l'aide du mode Edition.<br/><br/>"
@@ -315,6 +340,7 @@ void TabRecherche::messageAide(){
                                           "Utiliser le clic droit sur le chemin de l'élément en question.<br/>");
 }
 
+//****************************************************************************************************
 TabRecherche::~TabRecherche()
 {
 }

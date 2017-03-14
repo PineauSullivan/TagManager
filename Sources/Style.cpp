@@ -1,5 +1,15 @@
+/**
+* @file Style.cpp
+* @author G. Killian, P. Sullivan
+* @since 14/03/2017
+* @brief implémentation de la méthode de la classe Style
+*
+**/
+
+//****************************************************************************************************
 #include "Headers/Style.h"
 
+//****************************************************************************************************
 void Style::setStyle(QPushButton* button, int version){
     switch(version){
         case 1:

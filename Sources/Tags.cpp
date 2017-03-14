@@ -1,32 +1,46 @@
+/**
+* @file Tags.cpp
+* @author G. Killian, P. Sullivan
+* @since 14/03/2017
+* @brief implémentation des méthodes de la classe Tabs
+*
+**/
 
+//****************************************************************************************************
 #include "Headers/Tags.h"
 
-
-
+//****************************************************************************************************
 Tags::Tags()
 {
     initialiserTagsFiles();
 }
 
+//****************************************************************************************************
 QList<Tag*> Tags::getListTags(){
     return this->ListTags;
 }
+
+//****************************************************************************************************
 void Tags::setQWidgetRecherche(QWidgetO* TabRecherche){
     this->TabRecherche=TabRecherche;
 }
 
+//****************************************************************************************************
 void Tags::setQWidgetEdition(QWidgetO* TabEdition){
     this->TabEdition=TabEdition;
 }
 
+//****************************************************************************************************
 QWidgetO* Tags::getTabRecherche(){
     return this->TabRecherche;
 }
 
+//****************************************************************************************************
 QWidgetO* Tags::getTabEdition(){
     return this->TabEdition;
 }
 
+//****************************************************************************************************
 Tag* Tags::getTag(QString tagName){
     Tag* result = NULL;
     foreach(Tag* tag, this->ListTags){
@@ -37,6 +51,7 @@ Tag* Tags::getTag(QString tagName){
     return result;
 }
 
+//****************************************************************************************************
 void Tags::add_tag(QString name, bool write){
     bool ok = true;
     foreach(Tag* tag, this->ListTags){
@@ -57,6 +72,7 @@ void Tags::add_tag(QString name, bool write){
     }
 }
 
+//****************************************************************************************************
 void Tags::supprimerTag(Tag* tag){
     QFile file("Configs/ConfigTag"+tag->getName()+".txt");
     file.remove();
@@ -75,6 +91,7 @@ void Tags::supprimerTag(Tag* tag){
 
 }
 
+//****************************************************************************************************
 void Tags::initialiserTagsFiles(){
     QFile inputFile("Configs/Config.txt");
     if (inputFile.open(QIODevice::ReadOnly))
@@ -91,7 +108,7 @@ void Tags::initialiserTagsFiles(){
     }
 }
 
-
+//****************************************************************************************************
 Tags::~Tags()
 {
 }
